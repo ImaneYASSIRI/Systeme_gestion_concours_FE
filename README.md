@@ -8,13 +8,9 @@
 	</a>
 </p>
 
+[BACKEND](https://github.com/ImaneYASSIRI/Systeme_gestion_concours_BE)
 
-<p align="center">
-	Backend: [BACKEND](https://github.com/ImaneYASSIRI/Systeme_gestion_concours_BE)
-</p>
-
-
-
+<br>
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.5.
 
