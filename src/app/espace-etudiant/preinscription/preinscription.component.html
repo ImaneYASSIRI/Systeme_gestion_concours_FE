@@ -1,0 +1,1378 @@
+<html>
+<body>
+
+<form #etudiantForm ="ngForm" novalidate *ngIf="!submitted">
+  <section class="get_in_touch">
+    <div class="container">
+      <div class="contact-form row">
+        <div class="col-md-12">
+          <h1 class="title" style="padding-top: 30px">
+            Préinscription
+          </h1>
+          <div class="info p-3 mb-2 bg-light text-dark" >
+            <h2> <span style="text-transform: uppercase"> {{etudiant2.nom}}</span> {{etudiant2.prenom}}</h2>
+            <br>
+            <ul class="icons-list" >
+              <li><i class="icon-li fa fa-user" style=" color: #9932CC;"></i>  CNE : {{etudiant2.cne}}</li>
+              <br>
+              <li><i class="icon-li fa fa-envelope" style=" color: #9932CC;"></i>  Email : {{etudiant2.email}}</li>
+            </ul>
+            <!--label>CNE : {{etudiant.cne}}</label>
+            <label>NOM : {{etudiant.nom}}</label>
+            <label>PRENOM : {{etudiant.prenom}}</label>
+            <label>EMAIL : {{etudiant.email}}</label-->
+          </div>
+        </div>
+
+
+        <div class="form-field col-lg-6">
+          <input id="cne" class="input-text bg-light text-dark " name="cne" minlength="10"
+                 [class.is-invalid]="cne.invalid && cne.touched"
+                 #cne="ngModel" required [(ngModel)]="etudiant2.cne" pattern=""
+                 type="text" value="{{etudiant2.cne}}" disabled style="font-weight: bold">
+          <label class="label"> CNE :</label>
+
+          <div *ngIf="cne.invalid && (cne.dirty ||cne.touched)" class="alert alert-danger">
+            <div *ngIf="cne.errors.required">
+              CNE est obligatoire !
+            </div>
+            <div *ngIf="cne.errors.minlength">
+              CNE doit avoir 10 caractères!
+            </div>
+            <div *ngIf="cne.errors.pattern">
+              CNE est incorrect !
+            </div>
+          </div>
+        </div>
+
+        <div class="form-field col-lg-6">
+          <input class="input-text bg-light text-dark" name="email"
+                 [class.is-invalid]="email.invalid && email.touched"
+                 #email="ngModel" required [(ngModel)]="etudiant2.email"
+                 email="true" type="email" value="{{etudiant2.email}}" disabled
+                 style="font-weight: bold"
+                 pattern="^([A-Z|a-z|0-9](\.|_){0,1})+[A-Z|a-z|0-9]\@([A-Z|a-z|0-9])+((\.){0,1}[A-Z|a-z|0-9]){2}\.(com|net|org|co|org)+((\.[A-Z|a-z|0-9]{2,4})?)$">
+          <label class="label email">Email :</label>
+          <div *ngIf="email.invalid && (email.dirty ||email.touched)" class="alert alert-danger" >
+            <div *ngIf="email.errors.required">
+              L'adresse email est obligatoire !
+            </div>
+            <div *ngIf="email.errors.pattern">
+              L'adresse email est incorrecte !
+            </div>
+          </div>
+        </div>
+
+        <div class="form-field col-lg-6">
+          <input id="nom" class="input-text bg-light text-dark" name="nom" minlength="3"
+                 [class.is-invalid]="nom.invalid && nom.touched " type="text"
+                 #nom="ngModel" required [(ngModel)]="etudiant2.nom"
+                 pattern="^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$"
+                 value="{{etudiant2.nom}}" disabled style="font-weight: bold">
+          <label class="label nom"> Nom :</label>
+          <div *ngIf="nom.invalid && (nom.dirty ||nom.touched)" class="alert alert-danger" >
+            <div *ngIf="nom.errors.required">
+              Le nom est obligatoire !</div>
+            <div *ngIf="nom.errors.minlength">
+              Le nom est trop court!
+            </div>
+            <div *ngIf="nom.errors.pattern">
+              Le nom n'est pas correct!
+            </div>
+          </div>
+        </div>
+
+        <div class="form-field col-lg-6">
+          <input class="input-text bg-light text-dark " name="prenom" minlength="3"
+                 [class.is-invalid]="prenom.invalid && prenom.touched"
+                 #prenom="ngModel" required [(ngModel)]="etudiant2.prenom"
+                 type="text" style="font-weight: bold"
+                 pattern="^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$" value="{{etudiant2.prenom}}" disabled>
+          <label class="label prenom"> Prénom :</label>
+          <div *ngIf="prenom.invalid && (prenom.dirty ||prenom.touched)" class="alert alert-danger">
+            <div *ngIf="prenom.errors.required">
+              Le prénom est obligatoire !
+            </div>
+            <div *ngIf="prenom.errors.minlength">
+              Le prénom est trop court !
+            </div>
+            <div *ngIf="prenom.errors.pattern">
+              Le prénom est incorrect !
+            </div>
+          </div>
+        </div>
+
+
+        <div class="form-field col-lg-6">
+
+          <input id="cin" class="input-text" name="cin" minlength="7"
+                 [class.is-invalid]="cin.invalid && cin.touched "
+                 #cin="ngModel" required [(ngModel)]="etudiant.cin" pattern="" type="text">
+          <label class="label"> CIN :</label>
+
+          <div *ngIf="cin.invalid && (cin.dirty ||cin.touched)" class="alert alert-danger">
+            <div *ngIf="cin.errors.required">
+              CIN est obligatoire !
+            </div>
+            <div *ngIf="cin.errors.minlength">
+              CIN doit avoir 7 caractères minimum!
+            </div>
+            <div *ngIf="cin.errors.pattern">
+              CIN est incorrect !
+            </div>
+          </div>
+        </div>
+
+
+        <div class="form-field col-lg-6">
+          <input class="input-text" name="tel"
+                 [class.is-invalid]="tel.invalid && tel.touched"
+                 #tel="ngModel" required [(ngModel)]="etudiant.telephone"
+                 type="tel"
+                 pattern="\(?\d{3}\)?-? *\d{3}-? *-?\d{4}">
+          <label class="label tel">Numéro de téléphone :</label>
+          <div *ngIf="tel.invalid && (tel.dirty ||tel.touched)" class="alert alert-danger">
+            <div *ngIf="tel.errors.required">
+              Le numéro de téléphone est obligatoire !
+            </div>
+            <div *ngIf="tel.errors.pattern">
+              Le numéro de téléphone  est incorrect !
+            </div>
+          </div>
+        </div>
+
+        <div class="form-field col-lg-6">
+          <input class="input-text" name="dateNaissance"
+                 [class.is-invalid]="dateNaissance.invalid && dateNaissance.touched"
+                 #dateNaissance="ngModel" [(ngModel)]="etudiant.dateNaissance"
+                 type="date"
+                 required >
+          <label class="label dn">Date de naissance :</label>
+          <div *ngIf="dateNaissance.invalid && (dateNaissance.dirty ||dateNaissance.touched)" class="alert alert-danger">
+            <div *ngIf="dateNaissance.errors.required">
+              La date de naissance est obligatoire !
+            </div>
+          </div>
+        </div>
+
+        <div class="form-field col-lg-6">
+          <select (blur)="validateTypeDiplome(typeDiplome.value)" (change)="validateTypeDiplome(typeDiplome.value)"
+                  class="input-text" name="typeDiplome"
+                  [(ngModel)]="etudiant.typeDiplome"
+                  #typeDiplome="ngModel" (ngModelChange)="findConfigConcoursByTypeDiplomeReference(etudiant.typeDiplome)"
+                  [class.is-invalid]="typeDiplomeHasError && typeDiplome.touched">
+            <option value="default">Choisir un diplôme</option>
+            <option *ngFor="let td of typeDiplomes" [ngValue]="td" >{{td.libelle}}</option>
+          </select>
+          <label class="label td">Votre diplôme :</label>
+          <div class="alert alert-danger" [class.d-none]="!typeDiplomeHasError || typeDiplome.untouched" >
+            Veuillez choisir votre diplôme !
+          </div>
+        </div>
+
+        <div class="form-field col-lg-6">
+          <input class="input-text" name="moyenneBac"
+                 type="number"
+                 [class.is-invalid]="moyenneBac.invalid && moyenneBac.touched"
+                 #moyenneBac="ngModel" required [(ngModel)]="etudiant.moyenneBac"
+                 pattern="^0*([0-9]|1[0-9]|20)$"
+                 type="number">
+          <label class="label mb">Moyenne BAC :</label>
+          <div *ngIf="moyenneBac.invalid && (moyenneBac.dirty ||moyenneBac.touched)" class="alert alert-danger">
+            <div *ngIf="moyenneBac.errors.required">
+              La moyenne du bac est obligatoire !
+            </div>
+            <div *ngIf="moyenneBac.errors.pattern">
+              La moyenne du bac  est incorrecte !
+            </div>
+          </div>
+        </div>
+
+        <div class="form-field col-lg-6">
+          <input type="file" (change)="selectFile($event)" [(ngModel)]="etudiant.imageBac" name="image">
+          <button class="btn btn-btn" [disabled]="!selectedFiles" (click)="uploadBac()"> <i class="fa fa-download"> Télécharger </i> </button>
+        </div>
+
+        <div class="form-field col-lg-6">
+          <input class="input-text" name="moyenneS1"
+                 type="number"
+                 [(ngModel)]="etudiant.noteS1"
+                 [class.is-invalid]="moyenneS1.invalid && moyenneS1.touched"
+                 #moyenneS1="ngModel" required
+                 pattern="^0*([0-9]|1[0-9]|20)$" type="number">
+          <label class="label ms">Moyenne du semestre 1 :</label>
+          <div *ngIf="moyenneS1.invalid && (moyenneS1.dirty ||moyenneS1.touched)" class="alert alert-danger">
+            <div *ngIf="moyenneS1.errors.required">
+              La moyenne du semestre 1 est obligatoire !
+            </div>
+            <div *ngIf="moyenneS1.errors.pattern">
+              La moyenne du semestre 1 est incorrecte !
+            </div>
+          </div>
+        </div>
+
+        <div class="form-field col-lg-6">
+          <input type="file" (change)="selectFile($event)" [(ngModel)]="etudiant.imageS1" name="image">
+          <button class="btn btn-btn" [disabled]="!selectedFiles" (click)="uploadS1()"> <i class="fa fa-download"> Télécharger </i> </button>
+        </div>
+
+        <div class="form-field col-lg-6">
+          <input class="input-text" name="moyenneS2"
+                 type="number"
+                 [(ngModel)]="etudiant.noteS2"
+                 [class.is-invalid]="moyenneS2.invalid && moyenneS2.touched"
+                 #moyenneS2="ngModel" required
+                 pattern="^0*([0-9]|1[0-9]|20)$" type="number">
+          <label class="label ms">Moyenne du semestre 2 :</label>
+          <div *ngIf="moyenneS2.invalid && (moyenneS2.dirty ||moyenneS2.touched)" class="alert alert-danger" >
+            <div *ngIf="moyenneS2.errors.required">
+              La moyenne du semestre 2 est obligatoire !
+            </div>
+            <div *ngIf="moyenneS2.errors.pattern">
+              La moyenne du semestre 2 est incorrecte !
+            </div>
+          </div>
+        </div>
+
+        <div class="form-field col-lg-6">
+          <input type="file" (change)="selectFile($event)" [(ngModel)]="etudiant.imageS2" name="image">
+          <button class="btn btn-btn" [disabled]="!selectedFiles" (click)="uploadS2()"> <i class="fa fa-download"> Télécharger </i> </button>
+        </div>
+
+        <div class="form-field col-lg-6">
+          <input class="input-text" name="moyenneS3"
+                 type="number"
+                 [(ngModel)]="etudiant.noteS3"
+                 [class.is-invalid]="moyenneS3.invalid && moyenneS3.touched"
+                 #moyenneS3="ngModel" required
+                 pattern="^0*([0-9]|1[0-9]|20)$" type="number">
+          <label class="label ms">Moyenne du semestre 3 :</label>
+          <div *ngIf="moyenneS3.invalid && (moyenneS3.dirty ||moyenneS3.touched)" class="alert alert-danger">
+            <div *ngIf="moyenneS3.errors.required">
+              La moyenne du semestre 3 est obligatoire !
+            </div>
+            <div *ngIf="moyenneS3.errors.pattern">
+              La moyenne du semestre 3   est incorrect!
+            </div>
+          </div>
+        </div>
+
+        <div class="form-field col-lg-6">
+          <input type="file" (change)="selectFile($event)" [(ngModel)]="etudiant.imageS3" name="image">
+          <button class="btn btn-btn" [disabled]="!selectedFiles" (click)="uploadS3()"> <i class="fa fa-download"> Télécharger </i> </button>
+        </div>
+
+        <div class="form-field col-lg-6">
+          <input class="input-text" name="moyenneS4"
+                 type="number"
+                 [(ngModel)]="etudiant.noteS4"
+                 [class.is-invalid]="moyenneS4.invalid && moyenneS4.touched"
+                 #moyenneS4="ngModel" required
+                 pattern="^0*([0-9]|1[0-9]|20)$" type="number">
+          <label class="label ms">Moyenne du semestre 4 :</label>
+          <div *ngIf="moyenneS4.invalid && (moyenneS4.dirty ||moyenneS4.touched)" class="alert alert-danger alert-concours" >
+            <div *ngIf="moyenneS4.errors.required">
+              La moyenne du semestre 4 est obligatoire !
+            </div>
+            <div *ngIf="moyenneS4.errors.pattern">
+              La moyenne du semestre 4 est incorrect!
+            </div>
+          </div>
+        </div>
+
+        <div class="form-field col-lg-6">
+          <input type="file" (change)="selectFile($event)" [(ngModel)]="etudiant.imageS4" name="image">
+          <button class="btn btn-btn" [disabled]="!selectedFiles" (click)="uploadS4()"> <i class="fa fa-download"> Télécharger </i> </button>
+        </div>
+
+        <div class="form-field col-lg-6" *ngIf="typeDiplomeSelected != null">
+          <select (blur)="validateConfigConcours(configConcours.value)" (change)="validateConfigConcours(configConcours.value)"
+                  class="input-text" name="configConcours"
+                  [(ngModel)]="etudiant.anneeBac"
+                  #configConcours="ngModel"
+                  [class.is-invalid]="configConcoursHasError && configConcours.touched">
+            <option value="default">Choisir votre année d'obtention du bac</option>
+            <option *ngFor="let cc of typeDiplomeSelected.configConcourss" [ngValue]="cc.anneeBacMax">{{cc.anneeBacMax}}</option>
+            <!--option *ngFor="let cc of typeDiplomeSelected.configConcourss" [ngValue]="cc.anneeBacMax">{{cc.anneeBacMax}}</option-->
+            <!--option *ngFor="let cc of typeDiplomeSelected.configConcourss" [ngValue]="cc.anneeBacMin">{{cc.anneeBacMin}}</option-->
+          </select>
+          <label class="label anneeBac">Année d'obtention du BAC :</label>
+          <div class="alert alert-danger" [class.d-none]="!configConcoursHasError || configConcours.untouched" >
+            Veuillez choisir votre année d'obtention du Bac !
+          </div>
+        </div>
+
+        <!--div class="form-field col-lg-12" *ngIf="typeDiplomeSelected != null">
+          <strong>CHOISISSEZ UN CONCOURS PUIS APPUIYEZ SUR LE BOUTON + </strong> <br> <span style="color: darkred"> <i class="fa fa-exclamation"></i> vous pouvez faire plusieurs choix </span>
+        </div>
+
+        <div class="form-field col-md-12 " *ngIf="typeDiplomeSelected == null" style="color: red;"> VEUILLEZ CHOISIR VOTRE DIPLÔME ! </div>
+        <div class="form-field col-md-6 " *ngIf="typeDiplomeSelected != null">
+          <select (blur)=" validateConcours(conc.value)" (change)=" validateConcours(conc.value)"
+                  class="input-text" name="conc"
+                  [(ngModel)]="inscription.concours"
+                  #conc="ngModel"
+                  [class.is-invalid]="concoursHasError && conc.touched">
+            <option value="default">Choisir un concours</option>
+            <option *ngFor="let c of typeDiplomeSelected.configConcourss" [ngValue]="c.concours">{{c.concours.description}}</option>
+          </select>
+          <label class="label concours">Concours</label>
+          <div class="alert alert-danger alert-concours" [class.d-none]="!concoursHasError || conc.untouched"
+               style="top: 5px; left: -40px">
+            Veuillez choisir un concours !
+          </div>
+          <div class="col-md-2" style="padding-top: 30px; padding-right: 50px">
+            <button class="btn btn-outline-info btn-block ajout"  (click)="addInscription()">+</button>
+          </div>
+        </div-->
+
+        <div class="form-field col-lg-12" *ngIf="typeDiplomeSelected != null">
+          <strong>CHOISISSEZ UN CONCOURS PUIS APPUIYEZ SUR LE BOUTON + </strong> <br> <span style="color: darkred"> <i class="fa fa-exclamation"></i> vous pouvez faire plusieurs choix </span>
+        </div>
+
+        <div class="form-field col-md-12 " *ngIf="typeDiplomeSelected == null" style="color: red;"> VEUILLEZ CHOISIR VOTRE DIPLÔME ! </div>
+
+        <div class="form-field col-md-9" *ngIf="typeDiplomeSelected != null">
+          <select (blur)=" validateConcours(conc.value)" (change)=" validateConcours(conc.value)"
+                  class="input-text" name="conc"
+                  [(ngModel)]="inscription.concours"
+                  #conc="ngModel"
+                  [class.is-invalid]="concoursHasError && conc.touched">
+            <option value="default">Choisir un concours</option>
+            <option *ngFor="let c of typeDiplomeSelected.configConcourss" [ngValue]="c.concours">{{c.concours.description}}</option>
+          </select>
+          <label class="label concours">Concours</label>
+          <div class="alert alert-danger alert-concours" [class.d-none]="!concoursHasError || conc.untouched"
+               style="top: 5px; left: -40px">
+            Veuillez choisir un concours !
+          </div>
+        </div>
+          <div class="col-md-3">
+            <button class="btn btn-btn"  style="margin-top: 20px" (click)="addInscription()"><i class="fa fa-plus">  Ajouter</i>  </button>
+          </div>
+
+
+        <br>
+        <div class=" col-md-12" *ngIf="typeDiplomeSelected != null">
+            <table class="table table-hover table-striped">
+              <thead>
+              <th>Liste des concours que vous avez choisi</th>
+              </thead>
+              <tbody>
+              <tr *ngFor="let i of etudiant.inscriptions">
+                <td>{{i.concours.description}}</td>
+              </tbody>
+            </table>
+        </div>
+
+        <div class="form-field col-lg-12">
+          <button class="btn btn-outline-info btn-block envoi submit-btn" (click)="updateNew(etudiant2.cne, etudiant)"
+                  [disabled]="etudiantForm.form.invalid || typeDiplomeHasError || concoursHasError" >ENVOYER</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</form>
+</body>
+</html>
+
+<div class="alert alert-success success-message" role="alert" *ngIf="submitted">
+  <h4 class="alert-heading"> <i class="fa fa-check"> </i>   Votre préinscription a été effectuée avec succès!</h4>
+  <br>
+
+
+  <p> Vous devez télécharger votre convocation  </p>
+  <hr>
+  <div class="row pdf-row">
+    <div class="col-md-4 ">
+      <button (click)="generatePdf('open')"
+              class="btn btn-success btn-block btn-pdf">
+        <i class="fa fa-file-pdf-o"></i>
+        <span>   Ouvrir la convocation PDF</span>
+      </button>
+    </div>
+    <div class="col-md-4 ">
+      <button (click)="generatePdf('download')"
+              class="btn btn-info btn-block btn-pdf">
+        <i class="fa fa-download">   </i>
+        <span>   Télécharger la convocation PDF</span></button>
+    </div>
+    <div class="col-md-4 ">
+      <button (click)="generatePdf('print')"
+              class="btn btn-danger btn-block btn-pdf">
+        <i class="fa fa-print"></i>
+        <span>   Imprimer la convocation</span></button>
+    </div>
+
+  </div>
+
+
+  </div>
+
+
+
+
+
+
+
+
+
+
+<!--html>
+<body>
+<form #etudiantForm ="ngForm" novalidate *ngIf="!submitted">
+  <section class="get_in_touch">
+    <div class="container">
+      <div class="contact-form row">
+        <div class="col-md-12">
+          <h1 class="title" style="padding-top: 30px">
+            Préinscription
+          </h1>
+        </div>
+        <div class="form-field col-lg-6">
+          <input id="cne" class="input-text" name="cne" minlength="10"
+                 [class.is-invalid]="cne.invalid && cne.touched"
+                 #cne="ngModel" required [(ngModel)]="etudiant.cne" pattern="" type="text">
+          <label class="label"> CNE :</label>
+
+          <div *ngIf="cne.invalid && (cne.dirty ||cne.touched)" class="alert alert-danger">
+            <div *ngIf="cne.errors.required">
+              CNE est obligatoire !
+            </div>
+            <div *ngIf="cne.errors.minlength">
+              CNE doit avoir 10 caractères!
+            </div>
+            <div *ngIf="cne.errors.pattern">
+              CNE est incorrect !
+            </div>
+          </div>
+        </div>
+        <div class="form-field col-lg-6">
+          <input id="cin" class="input-text" name="cin" minlength="7"
+                 [class.is-invalid]="cin.invalid && cin.touched "
+                 #cin="ngModel" required [(ngModel)]="etudiant.cin" pattern="" type="text">
+          <label class="label"> CIN :</label>
+
+          <div *ngIf="cin.invalid && (cin.dirty ||cin.touched)" class="alert alert-danger">
+            <div *ngIf="cin.errors.required">
+              CIN est obligatoire !
+            </div>
+            <div *ngIf="cin.errors.minlength">
+              CIN doit avoir 7 caractères minimum!
+            </div>
+            <div *ngIf="cin.errors.pattern">
+              CIN est incorrect !
+            </div>
+          </div>
+        </div>
+        <div class="form-field col-lg-6">
+          <input id="nom" class="input-text" name="nom" minlength="3"
+                 [class.is-invalid]="nom.invalid && nom.touched " type="text"
+                 #nom="ngModel" required [(ngModel)]="etudiant.nom"
+                 pattern="^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$">
+          <label class="label nom"> Nom :</label>
+          <div *ngIf="nom.invalid && (nom.dirty ||nom.touched)" class="alert alert-danger" >
+            <div *ngIf="nom.errors.required">
+              Le nom est obligatoire !</div>
+            <div *ngIf="nom.errors.minlength">
+              Le nom est trop court!
+            </div>
+            <div *ngIf="nom.errors.pattern">
+              Le nom n'est pas correct!
+            </div>
+          </div>
+        </div>
+
+        <div class="form-field col-lg-6">
+          <input class="input-text " name="prenom" minlength="3"
+                 [class.is-invalid]="prenom.invalid && prenom.touched"
+                 #prenom="ngModel" required [(ngModel)]="etudiant.prenom"
+                 type="text"
+                 pattern="^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$">
+          <label class="label prenom"> Prénom :</label>
+          <div *ngIf="prenom.invalid && (prenom.dirty ||prenom.touched)" class="alert alert-danger">
+            <div *ngIf="prenom.errors.required">
+              Le prénom est obligatoire !
+            </div>
+            <div *ngIf="prenom.errors.minlength">
+              Le prénom est trop court !
+            </div>
+            <div *ngIf="prenom.errors.pattern">
+              Le prénom est incorrect !
+            </div>
+          </div>
+        </div>
+
+        <div class="form-field col-lg-6">
+          <input class="input-text" name="email"
+                 [class.is-invalid]="email.invalid && email.touched"
+                 #email="ngModel" required [(ngModel)]="etudiant.email"
+                 email="true" type="email"
+                 pattern="^([A-Z|a-z|0-9](\.|_){0,1})+[A-Z|a-z|0-9]\@([A-Z|a-z|0-9])+((\.){0,1}[A-Z|a-z|0-9]){2}\.(com|net|org|co|org)+((\.[A-Z|a-z|0-9]{2,4})?)$">
+          <label class="label email">Email :</label>
+          <div *ngIf="email.invalid && (email.dirty ||email.touched)" class="alert alert-danger" >
+            <div *ngIf="email.errors.required">
+              L'adresse email est obligatoire !
+            </div>
+            <div *ngIf="email.errors.pattern">
+              L'adresse email est incorrecte !
+            </div>
+          </div>
+        </div>
+
+        <div class="form-field col-lg-6">
+          <input class="input-text" name="tel"
+                 [class.is-invalid]="tel.invalid && tel.touched"
+                 #tel="ngModel" required [(ngModel)]="etudiant.telephone"
+                 type="tel"
+                 pattern="\(?\d{3}\)?-? *\d{3}-? *-?\d{4}">
+          <label class="label tel">Numéro de téléphone :</label>
+          <div *ngIf="tel.invalid && (tel.dirty ||tel.touched)" class="alert alert-danger">
+            <div *ngIf="tel.errors.required">
+              Le numéro de téléphone est obligatoire !
+            </div>
+            <div *ngIf="tel.errors.pattern">
+              Le numéro de téléphone  est incorrect !
+            </div>
+          </div>
+        </div>
+
+        <div class="form-field col-lg-6">
+          <input class="input-text" name="dateNaissance"
+                 [class.is-invalid]="dateNaissance.invalid && dateNaissance.touched"
+                 #dateNaissance="ngModel" [(ngModel)]="etudiant.dateNaissance"
+                 type="date"
+                 required >
+          <label class="label dn">Date de naissance :</label>
+          <div *ngIf="dateNaissance.invalid && (dateNaissance.dirty ||dateNaissance.touched)" class="alert alert-danger">
+            <div *ngIf="dateNaissance.errors.required">
+              La date de naissance est obligatoire !
+            </div>
+          </div>
+        </div>
+
+        <div class="form-field col-lg-6">
+          <select (blur)="validateTypeDiplome(typeDiplome.value)" (change)="validateTypeDiplome(typeDiplome.value)"
+                  class="input-text" name="typeDiplome"
+                  [(ngModel)]="etudiant.typeDiplome"
+                  #typeDiplome="ngModel" (ngModelChange)="findConfigConcoursByTypeDiplomeReference(etudiant.typeDiplome)"
+                  [class.is-invalid]="typeDiplomeHasError && typeDiplome.touched">
+            <option value="default">Choisir un type de diplome</option>
+            <option *ngFor="let td of typeDiplomes" [ngValue]="td" >{{td.libelle}}</option>
+          </select>
+          <label class="label td">Votre diplôme :</label>
+          <div class="alert alert-danger" [class.d-none]="!typeDiplomeHasError || typeDiplome.untouched" >
+            Veuillez choisir votre type de diplome !
+          </div>
+        </div>
+
+        <div class="form-field col-lg-6">
+          <input class="input-text" name="moyenneBac"
+                 type="number"
+                 [class.is-invalid]="moyenneBac.invalid && moyenneBac.touched"
+                 #moyenneBac="ngModel" required [(ngModel)]="etudiant.moyenneBac"
+                 pattern="^0*([0-9]|1[0-9]|20)$"
+                 type="number">
+          <label class="label mb">Moyenne BAC :</label>
+          <div *ngIf="moyenneBac.invalid && (moyenneBac.dirty ||moyenneBac.touched)" class="alert alert-danger">
+            <div *ngIf="moyenneBac.errors.required">
+              La moyenne du bac est obligatoire !
+            </div>
+            <div *ngIf="moyenneBac.errors.pattern">
+              La moyenne du bac  est incorrecte !
+            </div>
+          </div>
+        </div>
+
+        <div class="form-field col-lg-6">
+          <input type="file" (change)="selectFile($event)" [(ngModel)]="etudiant.imageBac" name="image">
+          <button class="btn btn-btn" [disabled]="!selectedFiles" (click)="upload()"> <i class="fa fa-download"> Télécharger </i> </button>
+        </div>
+
+        <div class="form-field col-lg-6">
+          <input class="input-text" name="moyenneS1"
+                 type="number"
+                 [(ngModel)]="etudiant.noteS1"
+                 [class.is-invalid]="moyenneS1.invalid && moyenneS1.touched"
+                 #moyenneS1="ngModel" required
+                 pattern="^0*([0-9]|1[0-9]|20)$" type="number">
+          <label class="label ms">Moyenne du semestre 1 :</label>
+          <div *ngIf="moyenneS1.invalid && (moyenneS1.dirty ||moyenneS1.touched)" class="alert alert-danger">
+            <div *ngIf="moyenneS1.errors.required">
+              La moyenne du semestre 1 est obligatoire !
+            </div>
+            <div *ngIf="moyenneS1.errors.pattern">
+              La moyenne du semestre 1 est incorrecte !
+            </div>
+          </div>
+        </div>
+
+        <div class="form-field col-lg-6">
+          <input type="file" (change)="selectFile($event)" [(ngModel)]="etudiant.imageS1" name="image">
+          <button class="btn btn-btn" [disabled]="!selectedFiles" (click)="upload()"> <i class="fa fa-download"> Télécharger </i> </button>
+        </div>
+
+        <div class="form-field col-lg-6">
+          <input class="input-text" name="moyenneS2"
+                 type="number"
+                 [(ngModel)]="etudiant.noteS2"
+                 [class.is-invalid]="moyenneS2.invalid && moyenneS2.touched"
+                 #moyenneS2="ngModel" required
+                 pattern="^0*([0-9]|1[0-9]|20)$" type="number">
+          <label class="label ms">Moyenne du semestre 2 :</label>
+          <div *ngIf="moyenneS2.invalid && (moyenneS2.dirty ||moyenneS2.touched)" class="alert alert-danger" >
+            <div *ngIf="moyenneS2.errors.required">
+              La moyenne du semestre 2 est obligatoire !
+            </div>
+            <div *ngIf="moyenneS2.errors.pattern">
+              La moyenne du semestre 2 est incorrecte !
+            </div>
+          </div>
+        </div>
+
+        <div class="form-field col-lg-6">
+          <input type="file" (change)="selectFile($event)" [(ngModel)]="etudiant.imageS2" name="image">
+          <button class="btn btn-btn" [disabled]="!selectedFiles" (click)="upload()"> <i class="fa fa-download"> Télécharger </i> </button>
+        </div>
+
+        <div class="form-field col-lg-6">
+          <input class="input-text" name="moyenneS3"
+                 type="number"
+                 [(ngModel)]="etudiant.noteS3"
+                 [class.is-invalid]="moyenneS3.invalid && moyenneS3.touched"
+                 #moyenneS3="ngModel" required
+                 pattern="^0*([0-9]|1[0-9]|20)$" type="number">
+          <label class="label ms">Moyenne du semestre 3 :</label>
+          <div *ngIf="moyenneS3.invalid && (moyenneS3.dirty ||moyenneS3.touched)" class="alert alert-danger">
+            <div *ngIf="moyenneS3.errors.required">
+              La moyenne du semestre 3 est obligatoire !
+            </div>
+            <div *ngIf="moyenneS3.errors.pattern">
+              La moyenne du semestre 3   est incorrect!
+            </div>
+          </div>
+        </div>
+
+        <div class="form-field col-lg-6">
+          <input type="file" (change)="selectFile($event)" [(ngModel)]="etudiant.imageS3" name="image">
+          <button class="btn btn-btn" [disabled]="!selectedFiles" (click)="upload()"> <i class="fa fa-download"> Télécharger </i> </button>
+        </div>
+
+        <div class="form-field col-lg-6">
+          <input class="input-text" name="moyenneS4"
+                 type="number"
+                 [(ngModel)]="etudiant.noteS4"
+                 [class.is-invalid]="moyenneS4.invalid && moyenneS4.touched"
+                 #moyenneS4="ngModel" required
+                 pattern="^0*([0-9]|1[0-9]|20)$" type="number">
+          <label class="label ms">Moyenne du semestre 4 :</label>
+          <div *ngIf="moyenneS4.invalid && (moyenneS4.dirty ||moyenneS4.touched)" class="alert alert-danger alert-concours" >
+            <div *ngIf="moyenneS4.errors.required">
+              La moyenne du semestre 4 est obligatoire !
+            </div>
+            <div *ngIf="moyenneS4.errors.pattern">
+              La moyenne du semestre 4 est incorrect!
+            </div>
+          </div>
+        </div>
+
+        <div class="form-field col-lg-6">
+          <input type="file" (change)="selectFile($event)" [(ngModel)]="etudiant.imageS4" name="image">
+          <button class="btn btn-btn" [disabled]="!selectedFiles" (click)="upload()"> <i class="fa fa-download"> Télécharger </i> </button>
+        </div>
+
+        <div class="form-field col-lg-12" *ngIf="typeDiplomeSelected != null">
+          <strong>CHOISISSEZ UN CONCOURS PUIS APPUIYEZ SUR LE BOUTON + </strong> <br> <span style="color: darkred"> <i class="fa fa-exclamation"></i> vous pouvez faire plusieurs choix </span>
+        </div>
+
+        <div class="form-field col-md-12 " *ngIf="typeDiplomeSelected == null" style="color: red;"> VEUILLEZ CHOISIR VOTRE DIPLÔME ! </div>
+        <div class="form-field col-md-10 " *ngIf="typeDiplomeSelected != null">
+          <select (blur)=" validateConcours(conc.value)" (change)=" validateConcours(conc.value)"
+                  class="input-text" name="conc"
+                  [(ngModel)]="inscription.concours"
+                  #conc="ngModel"
+                  [class.is-invalid]="concoursHasError && conc.touched">
+            <option value="default">Choisir un concours</option>
+            <option *ngFor="let c of typeDiplomeSelected.configConcourss" [ngValue]="c.concours">{{c.concours.description}}</option>
+          </select>
+          <label class="label concours">Concours</label>
+          <div class="alert alert-danger alert-concours" [class.d-none]="!concoursHasError || conc.untouched"
+               style="top: 5px; left: -40px">
+            Veuillez choisir un concours !
+          </div>
+          <div class="col-md-2" style="padding-top: 30px; padding-right: 50px">
+            <button class="btn btn-outline-info btn-block ajout"  (click)="addInscription()">+</button>
+          </div>
+        </div>
+
+        <br>
+        <div class=" col-md-12" *ngIf="typeDiplomeSelected != null">
+          <table class="table table-hover table-striped">
+            <thead>
+            <th>Liste des concours que vous avez choisi</th>
+            </thead>
+            <tbody>
+            <tr *ngFor="let i of etudiant.inscriptions">
+              <td>{{i.concours.description}}</td>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="form-field col-lg-12">
+          <button class="btn btn-outline-info btn-block envoi submit-btn" (click)="save()"
+                  [disabled]="etudiantForm.form.invalid || typeDiplomeHasError || concoursHasError" >ENVOYER</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</form>
+</body>
+</html>
+
+<div class="alert alert-success success-message" role="alert" *ngIf="submitted">
+  <h4 class="alert-heading"> <i class="fa fa-check"> </i>   Votre préinscription a été effectuée avec succès!</h4>
+  <br>
+
+
+  <p> Vous devez télécharger votre convocation  </p>
+  <hr>
+  <div class="row pdf-row">
+    <div class="col-md-4 ">
+      <button (click)="generatePdf('open')"
+              class="btn btn-success btn-block btn-pdf">
+        <i class="fa fa-file-pdf-o"></i>
+        <span>   Ouvrir la convocation PDF</span>
+      </button>
+    </div>
+    <div class="col-md-4 ">
+      <button (click)="generatePdf('download')"
+              class="btn btn-info btn-block btn-pdf">
+        <i class="fa fa-download">   </i>
+        <span>   Télécharger la convocation PDF</span></button>
+    </div>
+    <div class="col-md-4 ">
+      <button (click)="generatePdf('print')"
+              class="btn btn-danger btn-block btn-pdf">
+        <i class="fa fa-print"></i>
+        <span>   Imprimer la convocation</span></button>
+    </div>
+
+  </div>
+
+
+</div-->
+
+
+
+<!--body>
+<div class="wrapper">
+  <h2>
+    Préinscription
+  </h2>
+  <div class="row">
+    <div class="input-field col-md-6">
+      <input id="cne" class="input-text" name="cne" minlength="10"
+             [class.is-invalid]="cne.invalid && cne.touched"
+             #cne="ngModel" required [(ngModel)]="etudiant.cne" pattern="" type="text">
+      <label>CNE</label>
+      <div *ngIf="cne.invalid && (cne.dirty ||cne.touched)" class="alert alert-danger"  >
+        <div *ngIf="cne.errors.required">
+          CNE est obligatoire !
+        </div>
+        <div *ngIf="cne.errors.minlength">
+          CNE doit avoir 10 caractères!
+        </div>
+        <div *ngIf="cne.errors.pattern">
+          CNE est incorrect !
+        </div>
+      </div>
+    </div>
+    <div class="input-field col-md-6">
+      <input id="cin" class="input-text" name="cin" minlength="7"
+             [class.is-invalid]="cin.invalid && cin.touched "
+             #cin="ngModel" required [(ngModel)]="etudiant.cin" pattern="" type="text">
+      <label>CIN</label>
+      <div *ngIf="cin.invalid && (cin.dirty ||cin.touched)" class="alert alert-danger" >
+        <div *ngIf="cin.errors.required">
+          CIN est obligatoire !
+        </div>
+        <div *ngIf="cin.errors.minlength">
+          CIN doit avoir 7 caractères minimum!
+        </div>
+        <div *ngIf="cin.errors.pattern">
+          CIN est incorrect !
+        </div>
+      </div>
+    </div>
+    <div class="input-field col-md-6">
+      <input id="nom" class="input-text" name="nom" minlength="3"
+             [class.is-invalid]="nom.invalid && nom.touched " type="text"
+             #nom="ngModel" required [(ngModel)]="etudiant.nom"
+             pattern="^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$">
+      <label>Nom</label>
+      <div *ngIf="nom.invalid && (nom.dirty ||nom.touched)" class="alert alert-danger">
+        <div *ngIf="nom.errors.required">
+          Le nom est obligatoire !</div>
+        <div *ngIf="nom.errors.minlength">
+          Le nom est trop court!
+        </div>
+        <div *ngIf="nom.errors.pattern">
+          Le nom n'est pas correct!
+        </div>
+      </div>
+    </div>
+    <div class="input-field col-md-6">
+      <input class="input-text" name="prenom" minlength="3"
+             [class.is-invalid]="prenom.invalid && prenom.touched"
+             #prenom="ngModel" required [(ngModel)]="etudiant.prenom"
+             type="text"
+             pattern="^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$">
+      <label>Prénom</label>
+      <div *ngIf="prenom.invalid && (prenom.dirty ||prenom.touched)" class="alert alert-danger">
+        <div *ngIf="prenom.errors.required">
+          Le prénom est obligatoire !
+        </div>
+        <div *ngIf="prenom.errors.minlength">
+          Le prénom est trop court !
+        </div>
+        <div *ngIf="prenom.errors.pattern">
+          Le prénom est incorrect !
+        </div>
+      </div>
+    </div>
+    <div class="input-field col-md-6">
+      <input class="input-text" name="email"
+             [class.is-invalid]="email.invalid && email.touched"
+             #email="ngModel" required [(ngModel)]="etudiant.email"
+             email="true" type="email"
+             pattern="^([A-Z|a-z|0-9](\.|_){0,1})+[A-Z|a-z|0-9]\@([A-Z|a-z|0-9])+((\.){0,1}[A-Z|a-z|0-9]){2}\.(com|net|org|co|org)+((\.[A-Z|a-z|0-9]{2,4})?)$">
+      <label class="label">Email </label>
+      <div *ngIf="email.invalid && (email.dirty ||email.touched)" class="alert alert-danger"  style="width: 90%"  >
+        <div *ngIf="email.errors.required">
+          L'adresse email est obligatoire !
+        </div>
+        <div *ngIf="email.errors.pattern">
+          L'adresse email est incorrecte !
+        </div>
+      </div>
+    </div>
+    <div class="input-field col-md-6">
+      <input class="input-text" name="tel"
+             [class.is-invalid]="tel.invalid && tel.touched"
+             #tel="ngModel" required [(ngModel)]="etudiant.telephone"
+             type="tel"
+             pattern="\(?\d{3}\)?-? *\d{3}-? *-?\d{4}">
+      <label class="label">Numéro de téléphone </label>
+      <div *ngIf="tel.invalid && (tel.dirty ||tel.touched)" class="alert alert-danger"  style="width: 90%" >
+        <div *ngIf="tel.errors.required">
+          Le numéro de téléphone est obligatoire !
+        </div>
+        <div *ngIf="tel.errors.pattern">
+          Le numéro de téléphone  est incorrect !
+        </div>
+      </div>
+    </div>
+    <div class="input-field col-md-6">
+      <input class="input-text" name="dateNaissance"
+             [class.is-invalid]="dateNaissance.invalid && dateNaissance.touched"
+             #dateNaissance="ngModel" [(ngModel)]="etudiant.dateNaissance"
+             type="date"
+             required >
+      <label class="label">Date de naissance </label>
+      <div *ngIf="dateNaissance.invalid && (dateNaissance.dirty ||dateNaissance.touched)" class="alert alert-danger"  style="width: 90%" >
+        <div *ngIf="dateNaissance.errors.required">
+          La date de naissance est obligatoire !
+        </div>
+      </div>
+    </div>
+    <div class="input-field col-md-6">
+      <select (blur)="validateTypeDiplome(typeDiplome.value)" (change)="validateTypeDiplome(typeDiplome.value)"
+              class="input-text" name="typeDiplome"
+              [(ngModel)]="etudiant.typeDiplome"
+              #typeDiplome="ngModel" (ngModelChange)="findConfigConcoursByTypeDiplomeReference(etudiant.typeDiplome)"
+              [class.is-invalid]="typeDiplomeHasError && typeDiplome.touched">
+        <option value="default">Choisir un type de diplome</option>
+        <option *ngFor="let td of typeDiplomes" [ngValue]="td" >{{td.libelle}}</option>
+      </select>
+      <label class="label">Type diplome </label>
+      <div class="alert alert-danger" [class.d-none]="!typeDiplomeHasError || typeDiplome.untouched"  style="width: 90%" >
+        Veuillez choisir votre type de diplome !
+      </div>
+    </div>
+    <div class="input-field col-md-6">
+      <input class="input-text" name="moyenneBac"
+             type="number"
+             [class.is-invalid]="moyenneBac.invalid && moyenneBac.touched"
+             #moyenneBac="ngModel" required [(ngModel)]="etudiant.moyenneBac"
+             pattern="^0*([0-9]|1[0-9]|20)$"
+             type="number">
+      <label class="label">Moyenne BAC </label>
+      <div *ngIf="moyenneBac.invalid && (moyenneBac.dirty ||moyenneBac.touched)" class="alert alert-danger"  style="width: 90%" >
+        <div *ngIf="moyenneBac.errors.required">
+          La moyenne du bac est obligatoire !
+        </div>
+        <div *ngIf="moyenneBac.errors.pattern">
+          La moyenne du bac  est incorrecte !
+        </div>
+      </div>
+    </div>
+    <div class="input-field col-md-6">
+      <input type="file" (change)="selectFile($event)" [(ngModel)]="etudiant.imageBac" name="image">
+      <button class="btn btn-primary" [disabled]="!selectedFiles" (click)="upload()">Télécharger</button>
+    </div>
+    <div class="input-field col-md-6">
+      <input class="input-text" name="moyenneS1"
+             type="number"
+             [(ngModel)]="etudiant.noteS1"
+             [class.is-invalid]="moyenneS1.invalid && moyenneS1.touched"
+             #moyenneS1="ngModel" required
+             pattern="^0*([0-9]|1[0-9]|20)$" type="number">
+      <label class="label">Moyenne du semestre 1</label>
+      <div *ngIf="moyenneS1.invalid && (moyenneS1.dirty ||moyenneS1.touched)" class="alert alert-danger"  style="width: 90%" >
+        <div *ngIf="moyenneS1.errors.required">
+          La moyenne du semestre 1 est obligatoire !
+        </div>
+        <div *ngIf="moyenneS1.errors.pattern">
+          La moyenne du semestre 1 est incorrecte !
+        </div>
+      </div>
+    </div>
+    <div class="input-field col-md-6">
+      <input type="file" (change)="selectFile($event)" [(ngModel)]="etudiant.imageS1" name="image">
+      <button class="btn btn-primary" [disabled]="!selectedFiles" (click)="upload()">Télécharger </button>
+    </div>
+    <div class="input-field col-md-6">
+      <input class="input-text" name="moyenneS2"
+             type="number"
+             [(ngModel)]="etudiant.noteS2"
+             [class.is-invalid]="moyenneS2.invalid && moyenneS2.touched"
+             #moyenneS2="ngModel" required
+             pattern="^0*([0-9]|1[0-9]|20)$" type="number">
+      <label class="label">Moyenne du semestre 2</label>
+      <div *ngIf="moyenneS2.invalid && (moyenneS2.dirty ||moyenneS2.touched)" class="alert alert-danger"  style="width: 90%" >
+        <div *ngIf="moyenneS2.errors.required">
+          La moyenne du semestre 2 est obligatoire !
+        </div>
+        <div *ngIf="moyenneS2.errors.pattern">
+          La moyenne du semestre 2 est incorrecte !
+        </div>
+      </div>
+    </div>
+    <div class="input-field col-md-6">
+      <input type="file" (change)="selectFile($event)" [(ngModel)]="etudiant.imageS2" name="image">
+      <button class="btn btn-primary" [disabled]="!selectedFiles" (click)="upload()">Télécharger </button>
+    </div>
+    <div class="input-field col-md-6">
+      <input class="input-text" name="moyenneS3"
+             type="number"
+             [(ngModel)]="etudiant.noteS3"
+             [class.is-invalid]="moyenneS3.invalid && moyenneS3.touched"
+             #moyenneS3="ngModel" required
+             pattern="^0*([0-9]|1[0-9]|20)$" type="number">
+      <label class="label">Moyenne du semestre 3</label>
+      <div *ngIf="moyenneS3.invalid && (moyenneS3.dirty ||moyenneS3.touched)" class="alert alert-danger"  style="width: 90%" >
+        <div *ngIf="moyenneS3.errors.required">
+          La moyenne du semestre 3 est obligatoire !
+        </div>
+        <div *ngIf="moyenneS3.errors.pattern">
+          La moyenne du semestre 3   est incorrect!
+        </div>
+      </div>
+    </div>
+    <div class="input-field col-md-6">
+      <input type="file" (change)="selectFile($event)" [(ngModel)]="etudiant.imageS3" name="image">
+      <button class="btn btn-primary" [disabled]="!selectedFiles" (click)="upload()">Télécharger </button>
+    </div>
+    <div class="input-field col-md-6">
+      <input class="input-text" name="moyenneS4"
+             type="number"
+             [(ngModel)]="etudiant.noteS4"
+             [class.is-invalid]="moyenneS4.invalid && moyenneS4.touched"
+             #moyenneS4="ngModel" required
+             pattern="^0*([0-9]|1[0-9]|20)$" type="number">
+      <label class="label">Moyenne du semestre 4</label>
+      <div *ngIf="moyenneS4.invalid && (moyenneS4.dirty ||moyenneS4.touched)" class="alert alert-danger"  style="width: 90%" >
+        <div *ngIf="moyenneS4.errors.required">
+          La moyenne du semestre 4 est obligatoire !
+        </div>
+        <div *ngIf="moyenneS4.errors.pattern">
+          La moyenne du semestre 4 est incorrect!
+        </div>
+      </div>
+    </div>
+    <div class="input-field col-md-6">
+      <input type="file" (change)="selectFile($event)" [(ngModel)]="etudiant.imageS4" name="image">
+      <button class="btn btn-primary" [disabled]="!selectedFiles" (click)="upload()">Télécharger </button>
+    </div>
+  </div>
+  <div class="form-field col-lg-10 " *ngIf="typeDiplomeSelected == null" style="color: red"> VEUILLEZ CHOISIR VOTRE TYPE DE DIPLOME ! </div>
+  <div class="form-field col-lg-10 " *ngIf="typeDiplomeSelected != null">
+    <select (blur)=" validateConcours(conc.value)" (change)=" validateConcours(conc.value)"
+            class="input-text" name="conc"
+            [(ngModel)]="inscription.concours"
+            #conc="ngModel"
+            [class.is-invalid]="concoursHasError && conc.touched">
+      <option value="default">Choisir un concours</option>
+      <option *ngFor="let c of typeDiplomeSelected.configConcourss" [ngValue]="c">{{c.concours.description}}</option>
+    </select>
+    <label class="label">Concours</label>
+    <div class="alert alert-danger" [class.d-none]="!concoursHasError || conc.untouched">
+      Veuillez choisir un concours !
+    </div>
+    <div class="col-lg-2" style="padding-top: 30px; padding-right: 50px">
+      <button class="btn btn-outline-info btn-block ajout"  (click)="addInscription()">+</button>
+    </div>
+    <br>
+    <div class="card col-lg-12">
+      <div class="card-header"> Liste des concours que vous avez choisi</div>
+      <div class="card-body">
+        <table class="table table-hover table-striped">
+          <thead>
+          <th>Concours</th>
+          </thead>
+          <tbody>
+          <tr *ngFor="let i of etudiant.inscriptions">
+            <td>{{i.concours.description}}</td>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <input type="submit" value="Envoyer" class="btn">
+</div>
+</body-->
+
+
+
+
+<!--form #etudiantForm ="ngForm" novalidate *ngIf="!submitted">
+  <section class="get_in_touch">
+    <h1 class="title">
+      Préinscription
+    </h1>
+    <div class="container">
+      <div class="contact-form row">
+        <div class="form-field col-lg-6">
+          <input id="cne" class="input-text" name="cne" minlength="10"
+                 [class.is-invalid]="cne.invalid && cne.touched"
+                 #cne="ngModel" required [(ngModel)]="etudiant.cne" pattern="" type="text">
+          <label class="label"> CNE </label>
+          <div *ngIf="cne.invalid && (cne.dirty ||cne.touched)" class="alert alert-danger" style="width: 90%" >
+            <div *ngIf="cne.errors.required">
+              CNE est obligatoire !
+            </div>
+            <div *ngIf="cne.errors.minlength">
+              CNE doit avoir 10 caractères!
+            </div>
+            <div *ngIf="cne.errors.pattern">
+              CNE est incorrect !
+            </div>
+          </div>
+        </div>
+
+        <div class="form-field col-lg-6">
+          <input id="cin" class="input-text" name="cin" minlength="7"
+                 [class.is-invalid]="cin.invalid && cin.touched "
+                 #cin="ngModel" required [(ngModel)]="etudiant.cin" pattern="" type="text">
+          <label class="label"> CIN </label>
+          <div *ngIf="cin.invalid && (cin.dirty ||cin.touched)" class="alert alert-danger"  style="width: 90%" >
+            <div *ngIf="cin.errors.required">
+              CIN est obligatoire !
+            </div>
+            <div *ngIf="cin.errors.minlength">
+              CIN doit avoir 7 caractères minimum!
+            </div>
+            <div *ngIf="cin.errors.pattern">
+              CIN est incorrect !
+            </div>
+          </div>
+        </div>
+
+        <div class="form-field col-lg-6">
+          <input id="nom" class="input-text" name="nom" minlength="3"
+                 [class.is-invalid]="nom.invalid && nom.touched " type="text"
+                 #nom="ngModel" required [(ngModel)]="etudiant.nom"
+                 pattern="^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$">
+          <label class="label"> Nom </label>
+          <div *ngIf="nom.invalid && (nom.dirty ||nom.touched)" class="alert alert-danger"  style="width: 90%" >
+            <div *ngIf="nom.errors.required">
+              Le nom est obligatoire !</div>
+            <div *ngIf="nom.errors.minlength">
+              Le nom est trop court!
+            </div>
+            <div *ngIf="nom.errors.pattern">
+              Le nom n'est pas correct!
+            </div>
+          </div>
+        </div>
+
+        <div class="form-field col-lg-6">
+          <input class="input-text" name="prenom" minlength="3"
+                 [class.is-invalid]="prenom.invalid && prenom.touched"
+                 #prenom="ngModel" required [(ngModel)]="etudiant.prenom"
+                 type="text"
+                 pattern="^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$">
+          <label class="label"> Prénom </label>
+          <div *ngIf="prenom.invalid && (prenom.dirty ||prenom.touched)" class="alert alert-danger"  style="width: 90%" >
+            <div *ngIf="prenom.errors.required">
+              Le prénom est obligatoire !
+            </div>
+            <div *ngIf="prenom.errors.minlength">
+              Le prénom est trop court !
+            </div>
+            <div *ngIf="prenom.errors.pattern">
+              Le prénom est incorrect !
+            </div>
+          </div>
+        </div>
+
+        <div class="form-field col-lg-6">
+          <input class="input-text" name="email"
+                 [class.is-invalid]="email.invalid && email.touched"
+                 #email="ngModel" required [(ngModel)]="etudiant.email"
+                 email="true" type="email"
+                 pattern="^([A-Z|a-z|0-9](\.|_){0,1})+[A-Z|a-z|0-9]\@([A-Z|a-z|0-9])+((\.){0,1}[A-Z|a-z|0-9]){2}\.(com|net|org|co|org)+((\.[A-Z|a-z|0-9]{2,4})?)$">
+          <label class="label">Email </label>
+          <div *ngIf="email.invalid && (email.dirty ||email.touched)" class="alert alert-danger"  style="width: 90%"  >
+            <div *ngIf="email.errors.required">
+              L'adresse email est obligatoire !
+            </div>
+            <div *ngIf="email.errors.pattern">
+              L'adresse email est incorrecte !
+            </div>
+          </div>
+        </div>
+
+        <div class="form-field col-lg-6">
+          <input class="input-text" name="tel"
+                 [class.is-invalid]="tel.invalid && tel.touched"
+                 #tel="ngModel" required [(ngModel)]="etudiant.telephone"
+                 type="tel"
+                 pattern="\(?\d{3}\)?-? *\d{3}-? *-?\d{4}">
+          <label class="label">Numéro de téléphone </label>
+          <div *ngIf="tel.invalid && (tel.dirty ||tel.touched)" class="alert alert-danger"  style="width: 90%" >
+            <div *ngIf="tel.errors.required">
+              Le numéro de téléphone est obligatoire !
+            </div>
+            <div *ngIf="tel.errors.pattern">
+              Le numéro de téléphone  est incorrect !
+            </div>
+          </div>
+        </div>
+
+        <div class="form-field col-lg-6">
+          <input class="input-text" name="dateNaissance"
+                 [class.is-invalid]="dateNaissance.invalid && dateNaissance.touched"
+                 #dateNaissance="ngModel" [(ngModel)]="etudiant.dateNaissance"
+                 type="date"
+                 required >
+          <label class="label">Date de naissance </label>
+          <div *ngIf="dateNaissance.invalid && (dateNaissance.dirty ||dateNaissance.touched)" class="alert alert-danger"  style="width: 90%" >
+            <div *ngIf="dateNaissance.errors.required">
+              La date de naissance est obligatoire !
+            </div>
+          </div>
+        </div>
+
+        <div class="form-field col-lg-6">
+          <select (blur)="validateTypeDiplome(typeDiplome.value)" (change)="validateTypeDiplome(typeDiplome.value)"
+                  class="input-text" name="typeDiplome"
+                  [(ngModel)]="etudiant.typeDiplome"
+                  #typeDiplome="ngModel"
+                  [class.is-invalid]="typeDiplomeHasError && typeDiplome.touched">
+            <option value="default">Choisir un type de diplome</option>
+            <option *ngFor="let td of typeDiplomes" [ngValue]="td">{{td.libelle}}</option>
+          </select>
+          <label class="label">Type diplome </label>
+          <div class="alert alert-danger" [class.d-none]="!typeDiplomeHasError || typeDiplome.untouched"  style="width: 90%" >
+            Veuillez choisir votre type de diplome !
+          </div>
+        </div>
+
+        <div class="form-field col-lg-6">
+          <input class="input-text" name="moyenneBac"
+                 type="number"
+                 [class.is-invalid]="moyenneBac.invalid && moyenneBac.touched"
+                 #moyenneBac="ngModel" required [(ngModel)]="etudiant.moyenneBac"
+                 pattern="^0*([0-9]|1[0-9]|20)$"
+                 type="number">
+          <label class="label">Moyenne BAC </label>
+          <div *ngIf="moyenneBac.invalid && (moyenneBac.dirty ||moyenneBac.touched)" class="alert alert-danger"  style="width: 90%" >
+            <div *ngIf="moyenneBac.errors.required">
+              La moyenne du bac est obligatoire !
+            </div>
+            <div *ngIf="moyenneBac.errors.pattern">
+              La moyenne du bac  est incorrecte !
+            </div>
+          </div>
+        </div>
+
+        <div class="form-field col-lg-6">
+          <input type="file" (change)="selectFile($event)" [(ngModel)]="etudiant.imageBac" name="image">
+          <button class="btn btn-primary" [disabled]="!selectedFiles" (click)="upload()">Télécharger</button>
+        </div>
+
+        <div class="form-field col-lg-6">
+          <input class="input-text" name="moyenneS1"
+                 type="number"
+                 [(ngModel)]="etudiant.noteS1"
+                 [class.is-invalid]="moyenneS1.invalid && moyenneS1.touched"
+                 #moyenneS1="ngModel" required
+                 pattern="^0*([0-9]|1[0-9]|20)$" type="number">
+          <label class="label">Moyenne du semestre 1</label>
+          <div *ngIf="moyenneS1.invalid && (moyenneS1.dirty ||moyenneS1.touched)" class="alert alert-danger"  style="width: 90%" >
+            <div *ngIf="moyenneS1.errors.required">
+              La moyenne du semestre 1 est obligatoire !
+            </div>
+            <div *ngIf="moyenneS1.errors.pattern">
+              La moyenne du semestre 1 est incorrecte !
+            </div>
+          </div>
+        </div>
+
+        <div class="form-field col-lg-6">
+          <input type="file" (change)="selectFile($event)" [(ngModel)]="etudiant.imageS1" name="image">
+          <button class="btn btn-primary" [disabled]="!selectedFiles" (click)="upload()">Télécharger </button>
+        </div>
+
+        <div class="form-field col-lg-6">
+          <input class="input-text" name="moyenneS2"
+                 type="number"
+                 [(ngModel)]="etudiant.noteS2"
+                 [class.is-invalid]="moyenneS2.invalid && moyenneS2.touched"
+                 #moyenneS2="ngModel" required
+                 pattern="^0*([0-9]|1[0-9]|20)$" type="number">
+          <label class="label">Moyenne du semestre 2</label>
+          <div *ngIf="moyenneS2.invalid && (moyenneS2.dirty ||moyenneS2.touched)" class="alert alert-danger"  style="width: 90%" >
+            <div *ngIf="moyenneS2.errors.required">
+              La moyenne du semestre 2 est obligatoire !
+            </div>
+            <div *ngIf="moyenneS2.errors.pattern">
+              La moyenne du semestre 2 est incorrecte !
+            </div>
+          </div>
+        </div>
+
+        <div class="form-field col-lg-6">
+          <input type="file" (change)="selectFile($event)" [(ngModel)]="etudiant.imageS2" name="image">
+          <button class="btn btn-primary" [disabled]="!selectedFiles" (click)="upload()">Télécharger </button>
+        </div>
+
+        <div class="form-field col-lg-6">
+          <input class="input-text" name="moyenneS3"
+                 type="number"
+                 [(ngModel)]="etudiant.noteS3"
+                 [class.is-invalid]="moyenneS3.invalid && moyenneS3.touched"
+                 #moyenneS3="ngModel" required
+                 pattern="^0*([0-9]|1[0-9]|20)$" type="number">
+          <label class="label">Moyenne du semestre 3</label>
+          <div *ngIf="moyenneS3.invalid && (moyenneS3.dirty ||moyenneS3.touched)" class="alert alert-danger"  style="width: 90%" >
+            <div *ngIf="moyenneS3.errors.required">
+              La moyenne du semestre 3 est obligatoire !
+            </div>
+            <div *ngIf="moyenneS3.errors.pattern">
+              La moyenne du semestre 3   est incorrect!
+            </div>
+          </div>
+        </div>
+
+        <div class="form-field col-lg-6">
+          <input type="file" (change)="selectFile($event)" [(ngModel)]="etudiant.imageS3" name="image">
+          <button class="btn btn-primary" [disabled]="!selectedFiles" (click)="upload()">Télécharger </button>
+        </div>
+
+        <div class="form-field col-lg-6">
+          <input class="input-text" name="moyenneS4"
+                 type="number"
+                 [(ngModel)]="etudiant.noteS4"
+                 [class.is-invalid]="moyenneS4.invalid && moyenneS4.touched"
+                 #moyenneS4="ngModel" required
+                 pattern="^0*([0-9]|1[0-9]|20)$" type="number">
+          <label class="label">Moyenne du semestre 4</label>
+          <div *ngIf="moyenneS4.invalid && (moyenneS4.dirty ||moyenneS4.touched)" class="alert alert-danger"  style="width: 90%" >
+            <div *ngIf="moyenneS4.errors.required">
+              La moyenne du semestre 4 est obligatoire !
+            </div>
+            <div *ngIf="moyenneS4.errors.pattern">
+              La moyenne du semestre 4 est incorrect!
+            </div>
+          </div>
+        </div>
+
+        <div class="form-field col-lg-6">
+          <input type="file" (change)="selectFile($event)" [(ngModel)]="etudiant.imageS4" name="image">
+          <button class="btn btn-primary" [disabled]="!selectedFiles" (click)="upload()">Télécharger </button>
+        </div>
+
+        <div class="form-field col-lg-12">
+          <strong>CHOISISSEZ UN CONCOURS PUIS APPUIYEZ SUR LE BOUTON + </strong> <br> <span style="color: darkred"> <i class="fa fa-exclamation"></i> vous pouvez faire plusieurs choix </span>
+        </div>
+
+        <div class="form-field col-lg-10 ">
+          <select (blur)=" validateConcours(conc.value)" (change)=" validateConcours(conc.value)"
+                  class="input-text" name="conc"
+                  [(ngModel)]="inscription.concours"
+                  #conc="ngModel"
+                  [class.is-invalid]="concoursHasError && conc.touched">
+            <option value="default">Choisir un concours</option>
+            <option *ngFor="let c of concourss" [ngValue]="c">{{c.description}}</option>
+          </select>
+          <label class="label">Concours</label>
+          <div class="alert alert-danger" [class.d-none]="!concoursHasError || conc.untouched">
+            Veuillez choisir un concours !
+          </div>
+        </div>
+        <div class="col-lg-2" style="padding-top: 30px; padding-right: 50px">
+          <button class="btn btn-outline-info btn-block ajout"  (click)="addInscription()">+</button>
+        </div>
+        <br>
+        <div class="card col-lg-12">
+          <div class="card-header"> Liste des concours que vous avez choisi</div>
+          <div class="card-body">
+            <table class="table table-hover table-striped">
+              <thead>
+              <th>Concours</th>
+              </thead>
+              <tbody>
+              <tr *ngFor="let i of etudiant.inscriptions">
+                <td>{{i.concours.description}}</td>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="form-field col-lg-12" style="margin-left: 700px;">
+          <button class="btn btn-outline-info btn-block envoi submit-btn" (click)="save()"
+                  [disabled]="etudiantForm.form.invalid || typeDiplomeHasError || concoursHasError" >ENVOYER</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</form>
+
+<div class="alert alert-success" role="alert" *ngIf="submitted">
+  <h4 class="alert-heading">Votre préinscription a été effectuée avec succès!</h4>
+  <p> texte </p>
+  <hr>
+  <p class="mb-0"><button class="btn btn-primary" routerLink="/home">Revenir à l'accueil</button> </p>
+</div-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

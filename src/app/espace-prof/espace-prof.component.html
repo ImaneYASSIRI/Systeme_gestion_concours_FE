@@ -1,0 +1,65 @@
+<!--app-espace-prof-header></app-espace-prof-header>
+<router-outlet></router-outlet-->
+<header>
+  <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top logOut">
+    <ul class="navbar-nav ml-auto">
+      <button (click)="userLogOut()" class="btn btn-info" style="margin-right: 10px">
+        <i class="fa fa-sign-out" style="color: #fff" ></i> &nbsp;  Se déconnecter
+      </button>
+    </ul>
+  </nav>
+</header>
+<header>
+
+  <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
+    <div class="container-fluid">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto ">
+          <div class="vertical-line" style="height: 35px;"></div>
+          <li class="nav-item">
+            <!--button (click)="userLogOut()" class="btn">
+            <i class="fa fa-sign-out" style="color: #00bfa6" ></i> &nbsp;  Se déconnecter
+          </button-->
+           <div class="btn col-md-2">
+             <button type ="button" class="btn1" routerLink="/espace-prof/commission"> <i class="fa fa-home"></i>  Espace commission </button>
+           </div>
+
+          </li>
+          <li class="nav-item">
+            <div class="btn col-md-2">
+              <button type ="button" class="btn2" routerLink="/espace-prof/departement"><i class="fa fa-university"></i> Départements</button>
+            </div>
+          </li>
+          <li class="nav-item">
+            <div class="btn col-md-2">
+              <button type ="button" class="btn3" routerLink="/espace-prof/concours"><i class="fa fa-file-text-o"></i> Concours </button>
+            </div>
+          </li>
+          <div class="vertical-line" style="height: 35px;"></div>
+          <li class="nav-item">
+            <div class="btn col-md-2">
+              <button type ="button" class="btn4" routerLink="/espace-prof/preinscriptionlist"><i class="fa fa-list "></i> Etudiants préinscrits</button>
+            </div>
+          </li>
+          <li class="nav-item">
+            <div class="btn col-md-2">
+              <button type ="button" class="btn4" routerLink="/espace-prof/type-diplome"> <i class="fa fa-graduation-cap"></i><span> Diplômes</span>  </button>
+            </div>
+          </li>
+          <li class="nav-item">
+            <div class="btn">
+              <button type ="button" class="btn5" routerLink="/espace-prof/users"> <i class="fa fa-users"></i> <span> Comptes</span> </button>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+</header>
+<br>
+<router-outlet></router-outlet>
+<!--app-preinscription-list></app-preinscription-list-->

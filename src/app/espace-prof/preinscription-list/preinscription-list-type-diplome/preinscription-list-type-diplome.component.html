@@ -1,0 +1,75 @@
+<br>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-2">
+      <label> Selectionner un diplôme :</label>
+    </div>
+    <div class="col-md-7">
+      <select (change)="findEtudiantsByTypeDiplomeLibelle($event)" class="input-text">
+        <option value="default">Choisir un diplôme </option>
+        <option *ngFor="let td of typeDiplomes" [ngValue]="td.id" >{{td.libelle}}</option>
+      </select>
+    </div>
+    <!--div class="col-md-2">
+      <label>Télécharger le fichier:</label>
+    </div>
+    <div class="col-md-1">
+      <button class="btn btn-success" (click)="exportexcel()"> <i class="fa fa-file-excel-o">   Excel </i> </button>
+    </div-->
+  </div>
+</div>
+
+<br>
+<div>
+  <table datatable="ng" class="row-border hover" *ngIf="typeDiplomeSelected != null" [dtOptions]="dtOptions" [dtTrigger]="dtTrigger2" id="excel-table">
+    <thead>
+    <tr>
+      <th>CIN</th>
+      <th>CNE</th>
+      <th>Nom et Prénom</th>
+      <th>Date de naissance</th>
+      <th>Téléphone</th>
+      <th>Diplôme</th>
+      <th>Moyenne BAC</th>
+      <th>Moyenne S1</th>
+      <th>Moyenne S2</th>
+      <th>Moyenne S3</th>
+      <th>Moyenne des 3 semestres</th>
+      <th>Moyenne S4</th>
+      <th>BAC scanné</th>
+      <th>S1 scanné</th>
+      <th>S2 scanné</th>
+      <th>S3 scanné</th>
+      <th>S4 scanné</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let e of typeDiplomeSelected.etudiants">
+      <td>{{e.cin}}</td>
+      <td>{{e.cne}}</td>
+      <td> <span style="text-transform: uppercase"> {{e.nom}}</span> {{e.prenom}}</td>
+      <td>{{e.dateNaissance}}</td>
+      <td>{{e.telephone}}</td>
+      <td>{{e.typeDiplome.libelle}}</td>
+      <td>{{e.moyenneBac}}</td>
+      <td>{{e.noteS1}}</td>
+      <td>{{e.noteS2}}</td>
+      <td>{{e.noteS3}}</td>
+      <td>{{e.moyenne}}</td>
+      <td>{{e.noteS4}}</td>
+      <td type="file"> {{e.imageBac}} </td>
+      <td type="file"> {{e.imageS1}} </td>
+      <td type="file"> {{e.imageS2}} </td>
+      <td type="file"> {{e.imageS3}} </td>
+      <td type="file"> {{e.imageS4}} </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+
+
+
+
+

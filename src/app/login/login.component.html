@@ -1,0 +1,125 @@
+<!--html>
+<body>
+<div class="container">
+  <div class="form-container">
+
+    <h2 class="action"> Connexion</h2>
+
+    <div class="image">
+      <img src="../../assets/images/avatar.png" alt="no image" class="fade-in one">
+    </div>
+    <div [hidden]="!registration" class="container-fluid padding">
+      <div class="alert alert-success" role="alert" style="height: 70px; padding: 10px ">
+        Veuillez vérifier votre boîte mail pour récupérer vos coordonnées.
+      </div>
+    </div>
+    <div [hidden]="!noAccount" class="alert alert-danger" role="alert">
+      Vous n'avez pas de compte !
+      <strong>
+        <a href="#" class="alert-link" routerLink="/signup">Inscription</a>
+      </strong>
+    </div>
+    <div [hidden]="!incorrectPwd" class="alert alert-danger" role="alert">
+      CNE ou mot de passe incorrect !
+    </div>
+    <form #loginForm = "ngForm">
+      <input type="text" placeholder="Entrez votre CNE" class="fade-in two"
+             name="cne" minlength="10"
+             [class.is-invalid]="cne.invalid && cne.touched"
+             #cne="ngModel" required [(ngModel)]="user2.login"
+             pattern="">
+      <div *ngIf="cne.invalid && (cne.dirty ||cne.touched)" class="text text-danger"  >
+        <div *ngIf="cne.errors.required">
+          * CNE est obligatoire !</div>
+        <div *ngIf="cne.errors.minlength">
+          * CNE doit avoir 10 caractères!
+        </div>
+        <div *ngIf="cne.errors.pattern">
+          * CNE est incorrect!
+        </div>
+      </div>
+      <input  class="fade-in three" placeholder="Mot de passe"
+             name="mdp" [class.is-invalid]="mdp.invalid && mdp.touched"
+             #mdp="ngModel" required [(ngModel)]="user2.password"
+             pattern="" type="password">
+      <div *ngIf="mdp.invalid && (mdp.dirty ||mdp.touched)" class="text text-danger" >
+        <div *ngIf="mdp.errors.required">
+          * Le mot de passe est obligatoire !</div>
+      </div>
+
+      <button type="submit" class="fade-in four" (click)="seConnecter()" [disabled]="loginForm.form.invalid" >Se connecter</button>
+    </form>
+
+    <div class="footer-container">
+      <a routerLink="/signup" class="animation-action"> <span> Vous n'êtes pas déjà inscrit ?</span></a>
+
+</div>
+</div>
+</div>
+
+</body>
+</html-->
+
+<html>
+<body>
+<div class="container">
+  <div class="form-container">
+
+    <h2 class="action"> Connexion - Etudiant</h2>
+
+    <div class="image">
+      <img src="../../assets/images/avatar.png" alt="no image" class="fade-in one">
+    </div>
+    <div [hidden]="!registration" class="container-fluid padding">
+      <div class="alert alert-success" role="alert" style="height: 70px; padding: 10px ">
+        Veuillez vérifier votre boîte mail pour récupérer vos coordonnées.
+      </div>
+    </div>
+    <div [hidden]="!noAccount" class="alert alert-danger" role="alert">
+      Vous n'avez pas de compte !
+      <strong>
+        <a href="#" class="alert-link" routerLink="/signup">Inscription</a>
+      </strong>
+    </div>
+    <div [hidden]="!incorrectPwd" class="alert alert-danger" role="alert">
+      CNE ou mot de passe incorrect !
+    </div>
+    <form #loginForm = "ngForm">
+      <input type="text" placeholder="Entrez votre CNE" class="fade-in two"
+             name="cne" minlength="10"
+             [class.is-invalid]="cne.invalid && cne.touched"
+             #cne="ngModel" required [(ngModel)]="etudiant2.cne"
+             pattern="">
+      <div *ngIf="cne.invalid && (cne.dirty ||cne.touched)" class="text text-danger"  >
+        <div *ngIf="cne.errors.required">
+          * CNE est obligatoire !</div>
+        <div *ngIf="cne.errors.minlength">
+          * CNE doit avoir 10 caractères!
+        </div>
+        <div *ngIf="cne.errors.pattern">
+          * CNE est incorrect!
+        </div>
+      </div>
+      <input  class="fade-in three" placeholder="Mot de passe"
+              name="mdp" [class.is-invalid]="mdp.invalid && mdp.touched"
+              #mdp="ngModel" required [(ngModel)]="etudiant2.password"
+              pattern="" type="password">
+      <div *ngIf="mdp.invalid && (mdp.dirty ||mdp.touched)" class="text text-danger" >
+        <div *ngIf="mdp.errors.required">
+          * Le mot de passe est obligatoire !</div>
+      </div>
+
+      <button type="submit" class="fade-in four" (click)="seConnecter()" [disabled]="loginForm.form.invalid" >Se connecter</button>
+    </form>
+
+    <div class="footer-container">
+      <!--a href="#" > forgot password? </a-->
+      <a routerLink="/signup" class="animation-action"> <span> Vous n'êtes pas déjà inscrit ?</span></a>
+
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
+

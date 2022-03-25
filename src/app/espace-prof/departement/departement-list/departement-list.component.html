@@ -1,0 +1,284 @@
+<!--Liste des départements-->
+<div class="card">
+  <div class="card-header"> <strong>LISTE DES DÉPARTEMENTS</strong> </div>
+  <div class="card-body">
+    <!--table class="table table-hover table-striped">
+      <thead>
+      <th>Nom</th>
+      <th>Reference</th>
+      <th>Description</th>
+      <th> &nbsp; Action</th>
+      </thead>
+      <tbody>
+      <tr *ngFor="let d of departements">
+        <td>{{d.nom}}</td>
+        <td>{{d.reference}}</td>
+        <td>{{d.description}}</td>
+        <td>
+          <button class="btn btn-danger btn-sm fa fa-trash" (click)="deleteByReference(d)"></button> &nbsp;
+          <button class="btn btn-info btn-sm fa fa-plus" (click)="findFiliereByDepartementReference(d)"></button>
+        </td>
+      </tr>
+      </tbody>
+    </table-->
+    <table datatable="ng" class="row-border hover" [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+      <thead>
+      <tr>
+        <th>Nom</th>
+        <th>Référence</th>
+        <th>Description</th>
+        <th>Chef</th>
+        <th> &nbsp; Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let d of departements">
+        <td>{{d.nom}}</td>
+        <td>{{d.reference}}</td>
+        <td>{{d.description}}</td>
+        <td>{{d.chef}}</td>
+        <td>
+          <button class="btn btn-info btn-sm fa fa-plus" (click)="findFiliereByDepartementReference(d)"></button> &nbsp;
+          <button class="btn btn-success btn-sm fa fa-pencil" data-toggle="modal" data-target="#exampleModalLong" (click)="showModalUpdateDepartement=true; recover(d, d.id)"></button> &nbsp;
+          <!--button class="btn btn-danger btn-sm fa fa-trash" (click)="deleteByReference(d)"></button--> &nbsp;
+          <button class="btn btn-danger btn-sm fa fa-trash"
+                  mwlConfirmationPopover
+                  [popoverTitle]="popoverTitle"
+                  [popoverMessage]="popoverMessage"
+                  placement="left"
+                  cancelText = "Non"
+                  confirmText = "Oui"
+                  (confirm)="deleteByReference(d)"
+                  (cancel)="cancelClicked = true">
+          </button> &nbsp;
+        </td>
+
+        <!-- PROBLEME Modal deleteDepartement confirmation>
+        <div  [ngClass]="{'show': showModalDeleteDepartementConfirmation}" class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title"><strong> CONFIRMATION </strong> </h5>
+              </div>
+              <div class="modal-body">
+                <div style="text-align: center">
+                  <p>Êtes-vous sûr de vouloir supprimer le département ?</p>
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="showModalDeleteDepartementConfirmation=false">Non</button>
+                  &nbsp; &nbsp;
+                  <button type="button" class="btn btn-danger" (click)="deleteByReference(d); showModalDeleteDepartementConfirmation=false">Oui</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div-->
+
+      </tr>
+      </tbody>
+    </table>
+
+  </div>
+</div>
+<br>
+
+<!--Liste des filières-->
+<div class="card" *ngIf="departementSelected != null">
+  <!--div class="card-header" > <strong> LES FILIERES DU DEPARTEMENT : </strong> {{departementSelected.reference}}</div-->
+  <div class="row welcome text-center">
+    <div class="col-12">
+      <label> LES FILIÈRES DU DÉPARTEMENT :<span style="color: cadetblue; font-weight: bold"> {{departementSelected.nom}} </span></label>
+    </div>
+    <hr>
+  </div>
+  <div class="card-body">
+    <!--table class="table table-hover table-striped">
+      <thead>
+      <th>Libelle</th>
+      <th>Description</th>
+      </thead>
+      <tbody>
+      <tr *ngFor="let fi of departementSelected.filieress">
+        <td>{{fi.libelle}}</td>
+        <td>{{fi.description}}</td>
+      </tr>
+      </tbody>
+    </table-->
+    <table datatable="ng" class="row-border hover" [dtOptions]="dtOptions" [dtTrigger]="dtTrigger2">
+      <thead>
+      <tr>
+        <th>Libellé</th>
+        <th>Description</th>
+        <th>Responsable</th>
+        <th>Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let fi of departementSelected.filieress">
+        <td>{{fi.libelle}}</td>
+        <td>{{fi.description}}</td>
+        <td>{{fi.responsable}}</td>
+        <td>
+          <button class="btn btn-success btn-sm fa fa-pencil" data-toggle="modal" data-target="#exampleModalLong2" (click)="showModalUpdateFiliere=true; ; recoverFiliere(fi, fi.id)"></button> &nbsp;
+          <!--button class="btn btn-danger btn-sm fa fa-trash" (click)="deleteFiliereById(fi)"></button--> &nbsp;
+          <button class="btn btn-danger btn-sm fa fa-trash"
+                  mwlConfirmationPopover
+                  [popoverTitle]="popoverTitle"
+                  [popoverMessage]="popoverMessageFiliere"
+                  placement="left"
+                  cancelText = "Non"
+                  confirmText = "Oui"
+                  (confirm)="deleteFiliereById(fi)"
+                  (cancel)="cancelClicked = true">
+          </button> &nbsp;
+        </td>
+
+        <!--PROBLEME Modal deleteFiliere confirmation>
+        <div  [ngClass]="{'show': showModalDeleteFiliereConfirmation}" class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title"><strong> CONFIRMATION </strong> </h5>
+              </div>
+              <div class="modal-body">
+                <div style="text-align: center">
+                  <p>Êtes-vous sûr de vouloir supprimer la filière ?</p>
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="showModalDeleteFiliereConfirmation=false">Non</button>
+                  &nbsp; &nbsp;
+                  <button type="button" class="btn btn-danger" (click)="deleteFiliereById(fi); showModalDeleteFiliereConfirmation=false">Oui</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div-->
+
+      </tr>
+      </tbody>
+    </table>
+
+  </div>
+</div>
+
+<!--Modal updateDepartement-->
+<div  [ngClass]="{'show': showModalUpdateDepartement}" class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true" style="overflow: auto">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle"><strong> MODIFICATION DU DÉPARTEMENT  </strong> </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true" (click)="showModalUpdateDepartement=false">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="card">
+          <div class="card-header"> Informations département </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-12 form-group" ><label>Nom </label>
+                <input type="text" class="form-control" [(ngModel)]="departement2.nom">
+              </div>
+              <div class="col-md-12 form-group" ><label>Référence </label>
+                <input type="text" class="form-control" [(ngModel)]="departement2.reference">
+              </div>
+              <div class="col-md-12 form-group" ><label>Chef du département </label>
+                <input type="text" class="form-control" [(ngModel)]="departement2.chef">
+              </div>
+              <div class="col-md-12 form-group"><label>Description</label>
+                <textarea type="text" class="form-control" [(ngModel)]="departement2.description"></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="showModalUpdateDepartement=false">Annuler</button>
+        <button type="button" class="btn btn-success" (click)="showModalUpdateDepartementConfirmation=true">Modifier</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Modal updateDepartement confirmation-->
+<div  [ngClass]="{'show': showModalUpdateDepartementConfirmation}" class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"><strong> CONFIRMATION  </strong> </h5>
+      </div>
+      <div class="modal-body">
+        <div style="text-align: center">
+          <p>Êtes-vous sûr de vouloir modifier le département ?</p>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="showModalUpdateDepartementConfirmation=false">Non</button>
+          &nbsp; &nbsp;
+          <button type="button" class="btn btn-success" (click)="update(departement2.id, departement2.nom, departement2.reference, departement2.description, departement2.chef);
+           showModalUpdateDepartement=false; showModalUpdateDepartementConfirmation=false">Oui</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Modal updateFiliere-->
+<div  [ngClass]="{'show': showModalUpdateFiliere}" class="modal fade" id="exampleModalLong2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true" style="overflow: auto">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle2"><strong> MODIFICATION DE LA FILIÈRE  </strong> </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true" (click)="showModalUpdateFiliere=false">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="card">
+          <div class="card-header"> Informations filière </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-12 form-group" ><label>Libellé </label>
+                <input type="text" class="form-control" [(ngModel)]="filiere2.libelle">
+              </div>
+              <div class="col-md-12 form-group" ><label>Responsable </label>
+                <input type="text" class="form-control" [(ngModel)]="filiere2.responsable">
+              </div>
+              <div class="col-md-12 form-group"><label>Description</label>
+                <textarea type="text" class="form-control" [(ngModel)]="filiere2.description"></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="showModalUpdateFiliere=false">Annuler</button>
+        <button type="button" class="btn btn-success" (click)="showModalUpdateFiliereConfirmation=true">Modifier</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Modal updateFiliere confirmation-->
+<div  [ngClass]="{'show': showModalUpdateFiliereConfirmation}" class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"><strong> Confirmation  </strong> </h5>
+      </div>
+      <div class="modal-body">
+        <div style="text-align: center">
+          <p>Êtes-vous sûr de vouloir modifier cette filière ?</p>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="showModalUpdateFiliereConfirmation=false">Non</button>
+          &nbsp; &nbsp;
+          <button type="button" class="btn btn-success" (click)="updateFiliere(filiere2.id, filiere2.libelle, filiere2.description, filiere2.responsable);
+          showModalUpdateFiliere=false; showModalUpdateFiliereConfirmation=false">Oui</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+

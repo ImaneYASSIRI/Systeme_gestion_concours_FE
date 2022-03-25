@@ -1,0 +1,145 @@
+<!--animation-->
+
+<br>
+<div class="row">
+  <!--Départements et filières-->
+  <div class="col-md-6">
+    <div class="container-fluid padding">
+      <div class="row welcome text-center">
+        <div class="col-12">
+          <h1 class="display-4">Nos départements</h1>
+        </div>
+        <hr>
+        <div class="col-12">
+          <p class="lead">
+            Les activités de formation et de recherche au sein de la Faculté des Sciences et Techniques sont organisées autour de six
+            départements représentant les principales disciplines scientifiques: Physique, Chimie, Mathématique, Informatique, Biologie, Géologie.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--Liste des départements-->
+    <table class="table table-hover table-striped">
+      <thead>
+        <th >Département</th>
+        <th>Description</th>
+        <th>Le chef du département</th>
+        <th> &nbsp; </th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let d of departements">
+          <td>{{d.nom}}</td>
+          <td>{{d.description}}</td>
+          <td>{{d.chef}}</td>
+          <td>
+            <button class="btn btn-dark btn-sm" (click)="findFiliereByDepartementReference(d)">Voir les filières</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <br>
+
+    <!--Liste des filières-->
+    <div *ngIf="departementSelected != null">
+      <div class="container-fluid padding">
+
+      </div>
+      <table class="table table-hover table-striped">
+        <thead>
+        <th>Filière</th>
+        <th>Description</th>
+        <th>Le responsable de la filière</th>
+        </thead>
+        <tbody>
+        <tr *ngFor="let fi of departementSelected.filieress">
+          <td>{{fi.libelle}}</td>
+          <td>{{fi.description}}</td>
+          <td>{{fi.responsable}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!--Liste des concours et configConcours-->
+  <div class="col-md-6">
+    <div class="container-fluid padding">
+      <div class="row welcome text-center">
+        <div class="col-12">
+          <h1 class="display-4">Nos concours</h1>
+        </div>
+        <hr>
+        <div class="col-12">
+          <p class="lead">
+            Nous sommes ravis de votre intérêt pour la FSTG.
+            Nos concours permettent non seulement de tester le background scientifique des étudiants mais également d’identifier
+            leur potentiel et leur motivation pour La FSTG de Marrakech et la filière visée.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--Liste des concours-->
+    <table class="table table-hover table-striped">
+      <thead>
+        <th>Concours</th>
+        <th>Date ecrit</th>
+        <th>Date orale</th>
+        <th></th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let c of concourss">
+          <td>{{c.description}}</td>
+          <td>{{c.dateEcrit}}</td>
+          <td>{{c.dateOrale}}</td>
+          <td>
+            <button class="btn btn-dark btn-sm" (click)="findConfigConcoursByConcoursReference(c)">Voir les diplômes</button>
+          </td>
+        </tr>
+      </tbody>
+        </table>
+    <br>
+
+    <!--Liste des configConcours-->
+    <div *ngIf="concoursSelected != null">
+      <div class="container-fluid padding">
+        <div class="row welcome text-center">
+          <div class="col-12">
+            <label>LA CONFIGURATION DU CONCOURS : <span style="color: cadetblue; font-weight: bold"> {{concoursSelected.description}} </span></label>
+          </div>
+          <hr>
+        </div>
+      </div>
+      <table class="table table-hover table-striped">
+        <thead>
+          <th>Diplôme</th>
+        </thead>
+        <tbody>
+        <tr *ngFor="let ci of concoursSelected.configConcoursss">
+          <td>{{ci.typeDiplome.libelle}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
+</div>
+<br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

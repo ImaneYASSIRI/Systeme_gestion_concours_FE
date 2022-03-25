@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,700');
+
+header {
+  height: 100%;
+  width: 100%;
+  font-family: 'Poppings', sans-serif;
+  color: #222;
+}
+.navbar {
+  padding: .0rem;
+}
+.navbar-nav li {
+  padding-right: 20px;
+}
+.nav-link {
+  font-size: 1.1em !important;
+}
+/*img {
+  border: #007bff solid;
+  border-radius: 10px;
+}*/
+
+div.vertical-line{
+  width: 0px;
+  height: 100%;
+  float: left;
+  border: 1px inset;
+}

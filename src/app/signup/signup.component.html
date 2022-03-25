@@ -1,0 +1,201 @@
+<!--html>
+<body>
+<div class="container">
+  <div class="form-container">
+
+    <h2 class="action"> Inscription</h2>
+
+    <div class="image">
+      <img src="../../assets/images/avatar.png" alt="no image" class="fade-in one">
+    </div>
+    <div [hidden]="!userExists" class="alert alert-danger" role="alert">
+      Vous êtes déjà inscrit !
+      <strong>
+        <a href="#" class="alert-link" routerLink="/login">Connexion</a>
+      </strong>
+    </div>
+    <form #signUpForm = "ngForm">
+      <input type="text" placeholder="Entrez votre CNE" class="fade-in two"
+             name="cne" minlength="10"
+             [class.is-invalid]="cne.invalid && cne.touched"
+             #cne="ngModel" required [(ngModel)]="user2.login"
+             pattern="">
+
+      <div *ngIf="cne.invalid && (cne.dirty ||cne.touched)" class="text text-danger" >
+        <div *ngIf="cne.errors.required">
+          * CNE est obligatoire !</div>
+        <div *ngIf="cne.errors.minlength">
+          * CNE doit avoir 10 caractères!
+        </div>
+        <div *ngIf="cne.errors.pattern">
+          * CNE est incorrect!
+        </div>
+      </div>
+
+
+      <input name="nom" minlength="3" class="input" placeholder="Entrez votre nom"
+             [class.is-invalid]="nom.invalid && nom.touched" class="fade-in two"
+             #nom="ngModel" required [(ngModel)]="user2.nom"  type="text"
+             pattern="^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$">
+
+
+      <div *ngIf="nom.invalid && (nom.dirty ||nom.touched)" class="text text-danger" >
+        <div *ngIf="nom.errors.required">
+          * Le nom est obligatoire !</div>
+        <div *ngIf="nom.errors.minlength">
+          * Le nom est trop court!
+        </div>
+        <div *ngIf="nom.errors.pattern">
+          * Le nom est incorrect!
+        </div>
+      </div>
+
+
+      <input name="prenom" minlength="3" class="fade-in two" placeholder="Entrez votre prénom"
+             [class.is-invalid]="prenom.invalid && prenom.touched"
+             #prenom="ngModel" required [(ngModel)]="user2.prenom"  type="text"
+             pattern="^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$">
+
+
+      <div *ngIf="prenom.invalid && (prenom.dirty ||prenom.touched)" class="text text-danger" >
+        <div *ngIf="prenom.errors.required">
+          * Le prenom est obligatoire !</div>
+        <div *ngIf="prenom.errors.minlength">
+          * Le prénom est trop court!
+        </div>
+        <div *ngIf="prenom.errors.pattern">
+          * Le prénom est incorrect!
+        </div>
+      </div>
+
+      <input name="email" [class.is-invalid]="email.invalid && email.touched"
+             #email="ngModel" required [(ngModel)]="user2.email" placeholder=" Entrer votre email"
+             email="true" type="email" class="fade-in two"
+             pattern="^([A-Z|a-z|0-9](\.|_){0,1})+[A-Z|a-z|0-9]\@([A-Z|a-z|0-9])+((\.){0,1}[A-Z|a-z|0-9]){2}\.(com|net|org|co|org)+((\.[A-Z|a-z|0-9]{2,4})?)$">
+
+      <div *ngIf="email.invalid && (email.dirty ||email.touched)" class="text text-danger" >
+        <div *ngIf="email.errors.required">
+          * L'adresse email est obligatoire !
+        </div>
+        <div *ngIf="email.errors.pattern">
+          * L'adresse email est incorrecte!
+        </div>
+      </div>
+
+
+
+      <button type="submit" class="fade-in four" (click)="registrer()"  [disabled]="signUpForm.form.invalid">S'inscrire</button>
+
+    </form>
+
+    <div class="footer-container">
+      <a routerLink="/login" class="animation-action"> <span> Vous êtes déjà inscrit ? </span></a>
+
+    </div>
+  </div>
+</div>
+
+</body>
+</html-->
+
+<html>
+<body>
+<div class="container">
+  <div class="form-container">
+
+    <h2 class="action"> Inscription</h2>
+
+    <div class="image">
+      <img src="../../assets/images/avatar.png" alt="no image" class="fade-in one">
+    </div>
+    <div [hidden]="!etudiantExists" class="alert alert-danger" role="alert">
+      Vous êtes déjà inscrit !
+      <strong>
+        <a href="#" class="alert-link" routerLink="/login">Connexion</a>
+      </strong>
+    </div>
+    <form #signUpForm = "ngForm">
+      <input type="text" placeholder="Entrez votre CNE" class="fade-in two"
+             name="cne" minlength="10"
+             [class.is-invalid]="cne.invalid && cne.touched"
+             #cne="ngModel" required [(ngModel)]="etudiant2.cne"
+             pattern="">
+
+      <div *ngIf="cne.invalid && (cne.dirty ||cne.touched)" class="text text-danger" >
+        <div *ngIf="cne.errors.required">
+          * CNE est obligatoire !</div>
+        <div *ngIf="cne.errors.minlength">
+          * CNE doit avoir 10 caractères!
+        </div>
+        <div *ngIf="cne.errors.pattern">
+          * CNE est incorrect!
+        </div>
+      </div>
+
+
+      <input name="nom" minlength="3" class="input" placeholder="Entrez votre nom"
+             [class.is-invalid]="nom.invalid && nom.touched" class="fade-in two"
+             #nom="ngModel" required [(ngModel)]="etudiant2.nom"  type="text"
+             pattern="^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$">
+
+
+      <div *ngIf="nom.invalid && (nom.dirty ||nom.touched)" class="text text-danger" >
+        <div *ngIf="nom.errors.required">
+          * Le nom est obligatoire !</div>
+        <div *ngIf="nom.errors.minlength">
+          * Le nom est trop court!
+        </div>
+        <div *ngIf="nom.errors.pattern">
+          * Le nom est incorrect!
+        </div>
+      </div>
+
+
+      <input name="prenom" minlength="3" class="fade-in two" placeholder="Entrez votre prénom"
+             [class.is-invalid]="prenom.invalid && prenom.touched"
+             #prenom="ngModel" required [(ngModel)]="etudiant2.prenom"  type="text"
+             pattern="^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$">
+
+
+      <div *ngIf="prenom.invalid && (prenom.dirty ||prenom.touched)" class="text text-danger" >
+        <div *ngIf="prenom.errors.required">
+          * Le prenom est obligatoire !</div>
+        <div *ngIf="prenom.errors.minlength">
+          * Le prénom est trop court!
+        </div>
+        <div *ngIf="prenom.errors.pattern">
+          * Le prénom est incorrect!
+        </div>
+      </div>
+
+      <input name="email" [class.is-invalid]="email.invalid && email.touched"
+             #email="ngModel" required [(ngModel)]="etudiant2.email" placeholder=" Entrer votre email"
+             email="true" type="email" class="fade-in two"
+             pattern="^([A-Z|a-z|0-9](\.|_){0,1})+[A-Z|a-z|0-9]\@([A-Z|a-z|0-9])+((\.){0,1}[A-Z|a-z|0-9]){2}\.(com|net|org|co|org)+((\.[A-Z|a-z|0-9]{2,4})?)$">
+
+      <div *ngIf="email.invalid && (email.dirty ||email.touched)" class="text text-danger" >
+        <div *ngIf="email.errors.required">
+          * L'adresse email est obligatoire !
+        </div>
+        <div *ngIf="email.errors.pattern">
+          * L'adresse email est incorrecte!
+        </div>
+      </div>
+
+
+
+      <button type="submit" class="fade-in four" (click)="registrer()"  [disabled]="signUpForm.form.invalid">S'inscrire</button>
+
+    </form>
+
+    <div class="footer-container">
+      <a routerLink="/login" class="animation-action"> <span> Vous êtes déjà inscrit ? </span></a>
+      <!--a href="#" > forgot password? </a-->
+
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
+

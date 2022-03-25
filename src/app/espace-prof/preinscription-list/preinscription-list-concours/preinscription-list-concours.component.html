@@ -1,0 +1,74 @@
+<br>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-2">
+      <label> Selectionner un concours :</label>
+    </div>
+    <div class="col-md-7">
+      <select (change)="findEtudiantsByConcoursReference($event)" class="input-text">
+        <option value="default">Choisir un concours</option>
+        <option *ngFor="let c of concourss" [ngValue]="c.id" >{{c.description}}</option>
+      </select>
+    </div>
+    <!--div class="col-md-2">
+      <label>Télécharger le fichier:</label>
+    </div>
+    <div class="col-md-1">
+      <button class="btn btn-success" (click)="exportexcel()"> <i class="fa fa-file-excel-o">   Excel </i> </button>
+    </div-->
+  </div>
+</div>
+
+<br>
+<div>
+  <table datatable="ng" class="row-border hover" *ngIf="concoursSelected != null" [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" id="excel-table">
+    <thead>
+    <tr>
+      <th>CIN</th>
+      <th>CNE</th>
+      <th>Nom et Prénom</th>
+      <th>Date de naissance</th>
+      <th>Téléphone</th>
+      <th>Diplôme</th>
+      <th>Moyenne BAC</th>
+      <th>Moyenne S1</th>
+      <th>Moyenne S2</th>
+      <th>Moyenne S3</th>
+      <th>Moyenne des 3 semestres</th>
+      <th>Moyenne S4</th>
+      <th>BAC scanné</th>
+      <th>S1 scanné</th>
+      <th>S2 scanné</th>
+      <th>S3 scanné</th>
+      <th>S4 scanné</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let i of concoursSelected.inscriptions">
+      <td>{{i.etudiant.cin}}</td>
+      <td>{{i.etudiant.cne}}</td>
+      <td> <span style="text-transform: uppercase"> {{i.etudiant.nom}}</span> {{i.etudiant.prenom}}</td>
+      <td>{{i.etudiant.dateNaissance}}</td>
+      <td>{{i.etudiant.telephone}}</td>
+      <td>{{i.etudiant.typeDiplome.libelle}}</td>
+      <td>{{i.etudiant.moyenneBac}}</td>
+      <td>{{i.etudiant.noteS1}}</td>
+      <td>{{i.etudiant.noteS2}}</td>
+      <td>{{i.etudiant.noteS3}}</td>
+      <td>{{i.etudiant.moyenne}}</td>
+      <td>{{i.etudiant.noteS4}}</td>
+      <td type="file"> {{i.etudiant.imageBac}} </td>
+      <td type="file"> {{i.etudiant.imageS1}} </td>
+      <td type="file"> {{i.etudiant.imageS2}} </td>
+      <td type="file"> {{i.etudiant.imageS3}} </td>
+      <td type="file"> {{i.etudiant.imageS4}} </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+
+
+
+

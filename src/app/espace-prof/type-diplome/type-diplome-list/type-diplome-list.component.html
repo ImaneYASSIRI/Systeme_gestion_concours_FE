@@ -1,0 +1,124 @@
+<!--Liste des typeDiplomes-->
+<div class="card">
+  <div class="card-header"> <strong>LISTE DES TYPES DES DIPLÔMES</strong> </div>
+  <div class="card-body">
+    <!--table class="table table-hover table-striped">
+      <thead>
+      <th>Libelle</th>
+      <th>Description</th>
+      <th>Action</th>
+      </thead>
+      <tbody>
+      <tr *ngFor="let td of typeDiplomes">
+        <td>{{td.libelle}}</td>
+        <td>{{td.description}}</td>
+        <td>
+          <button class="btn btn-danger btn-sm fa fa-trash" (click)="deleteByLibelle(td)"></button> &nbsp;
+        </td>
+      </tr>
+      </tbody>
+    </table-->
+    <table datatable="ng" class="row-border hover" [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+      <thead>
+      <tr>
+        <th>Libellé</th>
+        <th>Description</th>
+        <th>Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let td of typeDiplomes">
+        <td>{{td.libelle}}</td>
+        <td>{{td.description}}</td>
+        <td>
+          <button class="btn btn-success btn-sm fa fa-pencil" data-toggle="modal" data-target="#exampleModalLong" (click)="showModalUpdateTypeDiplome=true; recover(td, td.id)"></button> &nbsp;
+          <!--button class="btn btn-danger btn-sm fa fa-trash" (click)="showModalDeleteTypeDiplomeConfirmation=true"></button--> &nbsp;
+          <button class="btn btn-danger btn-sm fa fa-trash"
+                  mwlConfirmationPopover
+                  [popoverTitle]="popoverTitle"
+                  [popoverMessage]="popoverMessage"
+                  placement="left"
+                  cancelText = "Non"
+                  confirmText = "Oui"
+                  (confirm)="deleteByLibelle(td)"
+                  (cancel)="cancelClicked = true">
+          </button> &nbsp;
+        </td>
+
+        <!-- PROBLEME Modal deleteTypeDiplome confirmation>
+        <div  [ngClass]="{'show': showModalDeleteTypeDiplomeConfirmation}" class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title"><strong> CONFIRMATION </strong> </h5>
+              </div>
+              <div class="modal-body">
+                <div style="text-align: center">
+                  <p>Êtes-vous sûr de vouloir supprimer le diplôme ?</p>
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="showModalDeleteTypeDiplomeConfirmation=false">Non</button>
+                  &nbsp; &nbsp;
+                  <button type="button" class="btn btn-danger" (click)="deleteByLibelle(td); showModalDeleteTypeDiplomeConfirmation=false">Oui</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div-->
+
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Modal updateTypeDiplome -->
+<div  [ngClass]="{'show': showModalUpdateTypeDiplome}" class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true" style="overflow: auto">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle"><strong> MODIFICATION DU DIPLÔME :</strong> </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true" (click)="showModalUpdateTypeDiplome=false">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="card">
+          <div class="card-header"> Informations du diplôme</div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-12 form-group" ><label>Libellé </label>
+                <input type="text" class="form-control" [(ngModel)]="typeDiplome2.libelle">
+              </div>
+              <div class="col-md-12 form-group"><label>Description</label>
+                <textarea type="text" class="form-control" [(ngModel)]="typeDiplome2.description"></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="showModalUpdateTypeDiplome=false">Annuler</button>
+        <button type="button" class="btn btn-success" (click)="showModalUpdateTypeDiplomeConfirmation=true ">Modifier</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Modal updateTypeDiplome confirmation-->
+<div  [ngClass]="{'show': showModalUpdateTypeDiplomeConfirmation}" class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"><strong> CONFIRMATION  </strong> </h5>
+      </div>
+      <div class="modal-body">
+        <div style="text-align: center">
+          <p>Êtes-vous sûr de vouloir modifier le diplôme ?</p>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="showModalUpdateTypeDiplomeConfirmation=false">Non</button>
+          &nbsp; &nbsp;
+          <button type="button" class="btn btn-success" (click)="update(typeDiplome2.id, typeDiplome2.libelle, typeDiplome2.description);
+           showModalUpdateTypeDiplome=false; showModalUpdateTypeDiplomeConfirmation=false">Oui</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

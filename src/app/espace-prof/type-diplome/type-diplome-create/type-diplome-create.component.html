@@ -1,0 +1,73 @@
+<!--Button ajouterTypeDiplome-->
+<div class="row">
+  <div class="col-md-4">
+    <label class="label"> Ajouter un diplôme :</label>
+  </div>
+  <div class="col-md-8">
+    <button class="btn btn-btn" (click)="showModalAddTypeDiplome=true"> <i class="fa fa-plus"></i> Ajouter</button>
+  </div>
+</div>
+
+<!--Modal saveTypeDiplome -->
+<div  [ngClass]="{'show': showModalAddTypeDiplome}" class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true" style="overflow: auto">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle"><strong> CRÉATION D'UN DIPLÔME </strong> </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true" (click)="showModalAddTypeDiplome=false">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <div class="card-body">
+
+            <!--creation d'un typeDiplome-->
+            <div class="card">
+              <div class="card-header"> Informations du diplôme</div>
+              <div class="card-body">
+                <div [hidden]="!typeDiplomeExists" class="row">
+                  <div  class="container-fluid padding">
+                    <div class="alert alert-danger" role="alert" style="height: 50px; padding: 10px ">
+                      Ce libellé existe déjà !
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12 form-group" ><label>Libellé </label>
+                    <input type="text" class="form-control" [(ngModel)]="typeDiplome.libelle">
+                  </div>
+                  <div class="col-md-12 form-group"><label>Description</label>
+                    <textarea type="text" class="form-control"  [(ngModel)]="typeDiplome.description" ></textarea>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="showModalAddTypeDiplome=false">Annuler</button>
+        <button class="btn btn-outline-info" (click)="showModalSaveTypeDiplomeConfirmation=true" [disabled]="!validateSave()">Sauvegarder</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Modal saveTypeDiplome confirmation-->
+<div  [ngClass]="{'show': showModalSaveTypeDiplomeConfirmation}" class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"><strong> CONFIRMATION  </strong> </h5>
+      </div>
+      <div class="modal-body">
+        <div style="text-align: center">
+          <p>Êtes-vous sûr de vouloir sauvegarder le diplôme ?</p>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="showModalSaveTypeDiplomeConfirmation=false">Non</button>
+          &nbsp; &nbsp;
+          <button type="button" class="btn btn-outline-info" (click)="save(); showModalSaveTypeDiplomeConfirmation=false">Oui</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

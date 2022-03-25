@@ -1,0 +1,52 @@
+.modal.show {
+  display: block;
+}
+.card-header {
+  background-color: rgba(102, 71, 145, 0.65);
+  color:#fff;
+  text-align:left;
+  font-weight: bold;
+}
+
+/* Styling modal */
+.modal .modal-content {
+  -webkit-animation-name: modal-animation;
+  -webkit-animation-duration: 0.5s;
+  animation-name: modal-animation;
+  animation-duration: 0.5s;
+}
+
+@-webkit-keyframes modal-animation {
+  from {
+    top: -100px;
+    opacity: 0;
+  }
+  to {
+    top: 0px;
+    opacity: 1;
+  }
+}
+
+@keyframes modal-animation {
+  from {
+    top: -100px;
+    opacity: 0;
+  }
+  to {
+    top: 0px;
+    opacity: 1;
+  }
+}
+.btn-btn {
+  background-color: #563d7c;
+  border: 1px solid #563d7c;
+  color:#fff;
+}
+
+.btn-btn:hover {
+  background-color: #6648b1;
+  border: 1px solid #6648b1;
+}
+.label{
+  font-weight:bold ;
+}

@@ -1,0 +1,39 @@
+<html>
+<body>
+<div class="container">
+  <div class="form-container">
+
+    <h2 class="action"> Connexion - Commission </h2>
+
+    <div class="image">
+      <img src="../../assets/images/avatar2.png" alt="no image" class="fade-in one">
+    </div>
+    <div [hidden]="!incorrectPwd" class="alert alert-danger" role="alert">
+      Login ou mot de passe incorrect !
+    </div>
+    <form #loginUserForm = "ngForm">
+      <input type="text" placeholder="Login" class="fade-in two"
+             name="login" minlength="10"
+             [class.is-invalid]="login.invalid && login.touched"
+             #login="ngModel" required [(ngModel)]="user.login"
+             pattern="">
+      <div *ngIf="login.invalid && (login.dirty ||login.touched)" class="text text-danger"  >
+        <div *ngIf="login.errors.required">
+          * Login est obligatoire !
+        </div>
+      </div>
+      <input  class="fade-in three" placeholder="Mot de passe"
+              name="mdp" [class.is-invalid]="mdp.invalid && mdp.touched"
+              #mdp="ngModel" required [(ngModel)]="user.password"
+              pattern="" type="password">
+      <div *ngIf="mdp.invalid && (mdp.dirty ||mdp.touched)" class="text text-danger" >
+        <div *ngIf="mdp.errors.required">
+          * Le mot de passe est obligatoire !</div>
+      </div>
+      <button type="submit" class="fade-in four" (click)="seConnecter()">Se connecter</button>
+    </form>
+  </div>
+</div>
+
+</body>
+</html>

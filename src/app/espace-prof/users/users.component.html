@@ -1,0 +1,175 @@
+<!--Liste des useres-->
+<!--div class="container">
+  <table datatable="ng" class="row-border hover" [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+    <thead>
+    <tr>
+      <th>CNE</th>
+      <th>Nom</th>
+      <th>Prénom</th>
+      <th>Email</th>
+      <th>Mot de passe</th>
+      <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let u of users" >
+      <td>{{u.login}}</td>
+      <td>{{u.nom}}</td>
+      <td>{{u.prenom}}</td>
+      <td>{{u.email}}</td>
+      <td>{{u.password}}</td>
+      <td>
+        <button class="btn btn-success btn-sm fa fa-pencil" data-toggle="modal" data-target="#exampleModalLong" (click)="showModalUpdateUser=true; recover(u, u.id)"></button> &nbsp;
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div-->
+
+<!--Modal updateUser-->
+<!--div  [ngClass]="{'show': showModalUpdateUser}" class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true" style="overflow: auto">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle"><strong> MODIFICATION DE L'UTILISATEUR </strong> </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true" (click)="showModalUpdateUser=false">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="card">
+          <div class="card-header"> Informations de l'utilisateur</div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-12 form-group" ><label>CNE </label>
+                <input type="text" class="form-control"  [(ngModel)]="user.login">
+              </div>
+              <div class="col-md-12 form-group" ><label>Nom </label>
+                <input type="text" class="form-control" [(ngModel)]="user.nom">
+              </div>
+              <div class="col-md-12 form-group" ><label>Prénom </label>
+                <input type="text" class="form-control" [(ngModel)]="user.prenom">
+              </div>
+              <div class="col-md-12 form-group" ><label>Email </label>
+                <input type="text" class="form-control" [(ngModel)]="user.email">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="showModalUpdateUser=false">Annuler</button>
+        <button type="button" class="btn btn-success" (click)="showModalUpdateUserConfirmation=true ">Modifier</button>
+      </div>
+    </div>
+  </div>
+</div-->
+
+<!--Modal updateUser confirmation-->
+<!--div  [ngClass]="{'show': showModalUpdateUserConfirmation}" class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"><strong> CONFIRMATION  </strong> </h5>
+      </div>
+      <div class="modal-body">
+        <div style="text-align: center">
+          <p>Êtes-vous sûr de vouloir modifier l'utilisateur ?</p>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="showModalUpdateUserConfirmation=false">Non</button>
+          &nbsp; &nbsp;
+          <button type="button" class="btn btn-success" (click)="update(user.id, user.login, user.nom, user.prenom, user.email);
+           showModalUpdateUser=false; showModalUpdateUserConfirmation=false">Oui</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div-->
+
+
+<!--Liste des useres-->
+<div class="container">
+  <table datatable="ng" class="row-border hover" [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+    <thead>
+    <tr>
+      <th>CNE</th>
+      <th>Nom</th>
+      <th>Prénom</th>
+      <th>Email</th>
+      <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let e of etudiants" >
+      <td>{{e.cne}}</td>
+      <td>{{e.nom}}</td>
+      <td>{{e.prenom}}</td>
+      <td>{{e.email}}</td>
+      <td>
+        <button class="btn btn-success btn-sm fa fa-pencil" data-toggle="modal" data-target="#exampleModalLong" (click)="showModalUpdateUser=true; recover(e, e.id)"></button> &nbsp;
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<!--Modal updateUser-->
+<div  [ngClass]="{'show': showModalUpdateUser}" class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true" style="overflow: auto">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle"><strong> MODIFICATION DE L'UTILISATEUR </strong> </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true" (click)="showModalUpdateUser=false">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="card">
+          <div class="card-header"> Informations de l'utilisateur</div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-12 form-group" ><label>CNE </label>
+                <input type="text" class="form-control"  [(ngModel)]="etudiant.cne">
+              </div>
+              <div class="col-md-12 form-group" ><label>Nom </label>
+                <input type="text" class="form-control" [(ngModel)]="etudiant.nom">
+              </div>
+              <div class="col-md-12 form-group" ><label>Prénom </label>
+                <input type="text" class="form-control" [(ngModel)]="etudiant.prenom">
+              </div>
+              <div class="col-md-12 form-group" ><label>Email </label>
+                <input type="text" class="form-control" [(ngModel)]="etudiant.email">
+              </div>
+              <!--div class="col-md-12 form-group" ><label>Mot de passe </label>
+                <input type="text" class="form-control" [(ngModel)]="user.password">
+              </div-->
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="showModalUpdateUser=false">Annuler</button>
+        <button type="button" class="btn btn-success" (click)="showModalUpdateUserConfirmation=true ">Modifier</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Modal updateUser confirmation-->
+<div  [ngClass]="{'show': showModalUpdateUserConfirmation}" class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"><strong> CONFIRMATION  </strong> </h5>
+      </div>
+      <div class="modal-body">
+        <div style="text-align: center">
+          <p>Êtes-vous sûr de vouloir modifier l'utilisateur ?</p>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="showModalUpdateUserConfirmation=false">Non</button>
+          &nbsp; &nbsp;
+          <button type="button" class="btn btn-success" (click)="update(etudiant.id, etudiant.cne, etudiant.nom, etudiant.prenom, etudiant.email);
+           showModalUpdateUser=false; showModalUpdateUserConfirmation=false">Oui</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

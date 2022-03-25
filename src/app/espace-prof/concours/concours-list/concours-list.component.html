@@ -1,0 +1,332 @@
+<!--Liste des concours-->
+<div class="card">
+  <div class="card-header"> <strong>LISTE DES CONCOURS</strong> </div>
+  <div class="card-body">
+    <!--table class="table table-hover table-striped">
+      <thead>
+        <th>Reference</th>
+        <th>Annee</th>
+        <th>Description</th>
+        <th>Date ecrit</th>
+        <th>Date orale</th>
+        <th>Nombre admis ecrit</th>
+        <th>Nombre admis orale</th>
+        <th>Nombre admis</th>
+        <th>Action</th>
+      </thead>
+      <tbody>
+      <tr *ngFor="let c of concourss">
+        <td>{{c.reference}}</td>
+        <td>{{c.annee}}</td>
+        <td>{{c.description}}</td>
+        <td>{{c.dateEcrit}}</td>
+        <td>{{c.dateOrale}}</td>
+        <td>{{c.nbreEtudiantAdmisEcrit}}</td>
+        <td>{{c.nbreEtudiantAdmisOrale}}</td>
+        <td>{{c.nbreEtudiantAdmis}}</td>
+        <td>
+          <button class="btn btn-danger btn-sm fa fa-trash" (click)="deleteByReference(c)"></button>
+          <button class="btn btn-info btn-sm fa fa-plus" (click)="findConfigConcoursByConcoursReference(c)"></button>
+        </td>
+      </tr>
+      </tbody>
+    </table-->
+    <table datatable="ng" class="row-border hover" [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+      <thead>
+      <tr>
+        <th>Référence</th>
+        <th>Année</th>
+        <th>Description</th>
+        <th>Date écrit</th>
+        <th>Date oral</th>
+        <th>Nombre admis écrit</th>
+        <th>Nombre admis oral</th>
+        <th>Nombre admis</th>
+        <th>Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let c of concourss">
+        <td>{{c.reference}}</td>
+        <td>{{c.annee}}</td>
+        <td>{{c.description}}</td>
+        <td>{{c.dateEcrit}}</td>
+        <td>{{c.dateOrale}}</td>
+        <td>{{c.nbreEtudiantAdmisEcrit}}</td>
+        <td>{{c.nbreEtudiantAdmisOrale}}</td>
+        <td>{{c.nbreEtudiantAdmis}}</td>
+        <td>
+          <button class="btn btn-info btn-sm fa fa-plus" (click)="findConfigConcoursByConcoursReference(c)"></button> &nbsp;
+          <button class="btn btn-success btn-sm fa fa-pencil" data-toggle="modal" data-target="#exampleModalLong" (click)="showModalUpdateConcours=true; recover(c, c.id)"></button> &nbsp;
+          <!--button class="btn btn-danger btn-sm fa fa-trash" (click)="deleteByReference(c)"></button-->
+          <button class="btn btn-danger btn-sm fa fa-trash"
+                  mwlConfirmationPopover
+                  [popoverTitle]="popoverTitle"
+                  [popoverMessage]="popoverMessage"
+                  placement="left"
+                  cancelText = "Non"
+                  confirmText = "Oui"
+                  (confirm)="deleteByReference(c)"
+                  (cancel)="cancelClicked = true">
+          </button> &nbsp;
+        </td>
+
+        <!--PROBLEME Modal deleteConcours confirmation>
+        <div  [ngClass]="{'show': showModalDeleteConcoursConfirmation}" class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title"><strong> CONFIRMATION </strong> </h5>
+              </div>
+              <div class="modal-body">
+                <div style="text-align: center">
+                  <p>Êtes-vous sûr de vouloir supprimer le concours ?</p>
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="showModalDeleteConcoursConfirmation=false">Non</button>
+                  &nbsp; &nbsp;
+                  <button type="button" class="btn btn-danger" (click)="deleteByReference(c); showModalDeleteConcoursConfirmation=false">Oui</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div-->
+
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<br>
+
+<!--Liste des configConcours-->
+<div class="card" *ngIf="concoursSelected != null">
+  <!--div class="card-header"> <strong> LA CONFIGURATION DU CONCOURS : </strong> {{concoursSelected.description}}</div-->
+  <div class="row welcome text-center">
+    <div class="col-12">
+      <label> LA CONFIGURATION DU CONCOURS :<span style="color: cadetblue; font-weight: bold"> {{concoursSelected.description}}</span></label>
+    </div>
+    <hr>
+  </div>
+  <div class="card-body">
+    <!--table class="table table-hover table-striped">
+      <thead>
+      <th>TypeDiplome</th>
+      <th>NoteMin</th>
+      <th>NbrAdmis</th>
+      <th>NbrMaxEcrit</th>
+      <th>NbrMaxOrale</th>
+      </thead>
+      <tbody>
+      <tr *ngFor="let ci of concoursSelected.configConcoursss">
+        <td>{{ci.typeDiplome.libelle}}</td>
+        <td>{{ci.noteMin}}</td>
+        <td>{{ci.nbreMaxAdmis}}</td>
+        <td>{{ci.nbreMaxEcritAdmis}}</td>
+        <td>{{ci.nbreMaxOraleAdmis}}</td>
+      </tr>
+      </tbody>
+    </table-->
+    <table datatable="ng" class="row-border hover" [dtOptions]="dtOptions" [dtTrigger]="dtTrigger2">
+      <thead>
+      <tr>
+        <th>Diplôme</th>
+        <th>Seuil</th>
+        <th>NbrAdmis</th>
+        <th>NbrMaxEcrit</th>
+        <th>NbrMaxOral</th>
+        <th>AnnéeBac</th>
+        <th>Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let ci of concoursSelected.configConcoursss">
+        <td>{{ci.typeDiplome.libelle}}</td>
+        <td>{{ci.noteMin}}</td>
+        <td>{{ci.nbreMaxAdmis}}</td>
+        <td>{{ci.nbreMaxEcritAdmis}}</td>
+        <td>{{ci.nbreMaxOraleAdmis}}</td>
+        <td>{{ci.anneeBacMax}}</td>
+        <td>
+          <button class="btn btn-success btn-sm fa fa-pencil" data-toggle="modal" data-target="#exampleModalLong2" (click)="showModalUpdateConfigConcours=true; recoverConfigConcours(ci, ci.id)"></button> &nbsp;
+          <!--button class="btn btn-danger btn-sm fa fa-trash" (click)="deleteConfigConcoursById(ci)"></button--> &nbsp;
+          <button class="btn btn-danger btn-sm fa fa-trash"
+                  mwlConfirmationPopover
+                  [popoverTitle]="popoverTitle"
+                  [popoverMessage]="popoverMessageConfig"
+                  placement="left"
+                  cancelText = "Non"
+                  confirmText = "Oui"
+                  (confirm)="deleteConfigConcoursById(ci)"
+                  (cancel)="cancelClicked = true">
+          </button> &nbsp;
+        </td>
+
+        <!--PROBLEME Modal deleteConfigConcours confirmation>
+        <div  [ngClass]="{'show': showModalDeleteConfigConcoursConfirmation}" class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title"><strong> CONFIRMATION </strong> </h5>
+              </div>
+              <div class="modal-body">
+                <div style="text-align: center">
+                  <p>Êtes-vous sûr de vouloir supprimer la configuration ?</p>
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="showModalDeleteConfigConcoursConfirmation=false">Non</button>
+                  &nbsp; &nbsp;
+                  <button type="button" class="btn btn-danger" (click)="deleteConfigConcoursById(ci); showModalDeleteConfigConcoursConfirmation=false">Oui</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div-->
+
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!--Modal updateConcours-->
+<div  [ngClass]="{'show': showModalUpdateConcours}" class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true" style="overflow: auto">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle"><strong> MODIFICATION DU CONCOURS </strong> </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true" (click)="showModalUpdateConcours=false">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="card">
+          <div class="card-header"> Informations du concours </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-6 form-group"><label>Référence</label>
+                <input type="text" class="form-control" [(ngModel)]="concours2.reference">
+              </div>
+              <div class="col-md-6 form-group"><label>Année</label>
+                <input type="number" class="form-control" [(ngModel)]="concours2.annee">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 form-group"><label>Date oral</label>
+                <input type="date" class="form-control" [(ngModel)]="concours2.dateOrale">
+              </div>
+              <div class="col-md-6 form-group"><label>Date écrit</label>
+                <input type="date" class="form-control" [(ngModel)]="concours2.dateEcrit">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 form-group"><label>Nombre admis orale</label>
+                <input type="number" class="form-control" [(ngModel)]="concours2.nbreEtudiantAdmisOrale">
+              </div>
+              <div class="col-md-6 form-group"><label>Nombre admis écrit</label>
+                <input type="number" class="form-control" [(ngModel)]="concours2.nbreEtudiantAdmisEcrit">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 form-group"><label>Nombre admis</label>
+                <input type="number" class="form-control" [(ngModel)]="concours2.nbreEtudiantAdmis">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12 form-group"><label>Description</label>
+                <textarea type="text" class="form-control" [(ngModel)]="concours2.description"></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="showModalUpdateConcours=false">Annuler</button>
+        <button type="button" class="btn btn-success" (click)="showModalUpdateConcoursConfirmation=true">Modifier</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Modal updateConcours confirmation-->
+<div  [ngClass]="{'show': showModalUpdateConcoursConfirmation}" class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"><strong> CONFIRMATION  </strong> </h5>
+      </div>
+      <div class="modal-body">
+        <div style="text-align: center">
+          <p>Êtes-vous sûr de vouloir modifier le concours ?</p>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="showModalUpdateConcoursConfirmation=false">Non</button>
+          &nbsp; &nbsp;
+          <button type="button" class="btn btn-success" (click)="update(concours2.id, concours2.reference, concours2.annee, concours2.dateOrale,concours2.dateEcrit, concours2.nbreEtudiantAdmisOrale,
+          concours2.nbreEtudiantAdmisEcrit, concours2.nbreEtudiantAdmis, concours2.description); showModalUpdateConcours=false; showModalUpdateConcoursConfirmation=false">Oui</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Modal updateConfigConcours-->
+<div  [ngClass]="{'show': showModalUpdateConfigConcours}" class="modal fade" id="exampleModalLong2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true" style="overflow: auto">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle2"><strong> MODIFICATION DE LA CONFIGURATION DU CONCOURS  </strong> </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true" (click)="showModalUpdateConfigConcours=false">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="card">
+          <div class="card-header"> Informations configuration </div>
+          <div class="card-body">
+            <div class="form-group">
+              <!--div class="row">
+                <div class="col-md-12"><label> Diplôme </label>
+                  <input type="text" [defaultValue]="configConcours2.typeDiplome.libelle" class="form-control"></div>
+                </div-->
+              </div>
+            <div class="form-group">
+              <div class="row">
+                <div class="col-md-6 form-group"><label> Seuil </label>
+                  <input type="number" class="form-control" [(ngModel)]="configConcours2.noteMin"></div>
+                <div class="col-md-6 form-group"><label> Nbr Max des Admis </label>
+                  <input type="number" class="form-control" [(ngModel)]="configConcours2.nbreMaxAdmis"></div>
+              </div>
+              <div class="row">
+                <div class="col-md-6 form-group"><label> Nbr Max Ecrit </label>
+                  <input type="number" class="form-control" [(ngModel)]="configConcours2.nbreMaxEcritAdmis"></div>
+                <div class="col-md-6 form-group"><label> Nbr Max Oral </label>
+                  <input type="number" class="form-control" [(ngModel)]="configConcours2.nbreMaxOraleAdmis"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="showModalUpdateConfigConcours=false">Annuler</button>
+        <button type="button" class="btn btn-success" (click)="showModalUpdateConfigConcoursConfirmation=true">Modifier</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Modal updateConfigConcours confirmation-->
+<div  [ngClass]="{'show': showModalUpdateConfigConcoursConfirmation}" class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"><strong> Confirmation  </strong> </h5>
+      </div>
+      <div class="modal-body">
+        <div style="text-align: center">
+          <p>Êtes-vous sûr de vouloir modifier cette configuration ?</p>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="showModalUpdateConfigConcoursConfirmation=false">Non</button>
+          &nbsp; &nbsp;
+          <button type="button" class="btn btn-success" (click)="updateConfigConcours(configConcours2.id, configConcours2.noteMin, configConcours2.nbreMaxAdmis, configConcours2.nbreMaxEcritAdmis,
+          configConcours2.nbreMaxOraleAdmis); showModalUpdateConfigConcours=false; showModalUpdateConfigConcoursConfirmation=false">Oui</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

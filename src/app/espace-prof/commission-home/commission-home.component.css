@@ -1,0 +1,106 @@
+body {
+  margin-top: -90px;
+  padding: 0px;
+  box-sizing: border-box;
+  font-family: 'Poppings', sans-serif;
+}
+h1, h2, p {
+  text-align: center;
+}
+h1 {
+  margin-top: 100px;
+  font-weight: 600;
+  color: #777;
+}
+p {
+  font-size: 1.2rem;
+}
+h2 {
+  font-size: 2.3rem;
+  margin-top: 48px;
+  font-weight: 600;
+  color: #6d7c86
+}
+.outer-box {
+  padding: 40px;
+  border-radius: 10px;
+  position: relative;
+  overflow: hidden;
+  transition: all .6s;
+  margin-top: 30px;
+}
+hr {
+  height: 15px;
+  background-color: #9932CC ;
+  border-radius: 20px;
+  width: 50%;
+  position: absolute;
+  top: -40px;
+  left: 50%;
+  right: 50%;
+  transform: translateX(-50%);
+  transition: top .6s;
+}
+.secondary {
+  width: 12px;
+  position: absolute;
+}
+.circle1 {
+  top: 65px;
+  left: 150px;
+  transition: all .6s ;
+  font-size: 23px;
+}
+.circle2 {
+  top: 100px;
+  left: 85px;
+  transition: all .6s ;
+  font-size: 23px;
+}
+.plus {
+  top: 80px;
+  left: 110px;
+  transition: all .6s ;
+  font-size: 23px;
+}
+.main {
+  width: 100px;
+  margin-top: 50px;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  transform: translateX(-50%);
+  padding-left: 20px;
+}
+.outer-box:hover {
+  box-shadow: 0 2rem 10rem rgba(216,191,216,1);
+  transform: scale(1.01);
+}
+.outer-box:hover hr {
+  top: -30px;
+}
+.outer-box:hover .cirlce1 {
+  top: 55px;
+}
+.outer-box:hover .cirlce2 {
+  left: 85px;
+}
+.outer-box:hover .plus {
+  top: 70px;
+  left: 100px;
+}
+.fa-users, .fa-university, .fa-file-text-o, .fa-graduation-cap, .fa-list {
+  color: #6d7c86;
+  font-size: 4em;
+}
+
+.fa-trash {
+  color: #dc3545;
+}
+.fa-edit {
+  color: #28a745;
+}
+.fa-plus {
+  color: #17a2b8;
+}
+

@@ -1,0 +1,183 @@
+<!--Button ajouterConcours-->
+<div class="row">
+  <div class="col-md-4">
+    <label class="label"> Ajouter un concours avec sa configuration :</label>
+  </div>
+  <div class="col-md-8">
+    <button class="btn btn-btn" (click)="showModalAddConcours=true"> <i class="fa fa-plus"></i> Ajouter</button>
+  </div>
+</div>
+
+<!--Modal saveConcours -->
+<div  [ngClass]="{'show': showModalAddConcours}" class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true" style="overflow: auto">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle"><strong> CRÉATION D'UN CONCOURS ET AJOUT DES CONFIGURATIONS </strong> </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true" (click)="showModalAddConcours=false">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <div class="card-body">
+
+            <!--creation d'un concours-->
+            <div class="card">
+              <div class="card-header"> Informations concours</div>
+              <div class="card-body">
+                <div [hidden]="!concoursExists" class="row">
+                  <div  class="container-fluid padding">
+                    <div class="alert alert-danger" role="alert" style="height: 50px; padding: 10px ">
+                      Cette référence existe déjà !
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6 form-group"><label>Référence</label>
+                    <input type="text" class="form-control" [(ngModel)]="concours.reference">
+                  </div>
+                  <div class="col-md-6 form-group"><label>Année</label>
+                    <input type="number" class="form-control" [(ngModel)]="concours.annee">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6 form-group"><label>Date orale</label>
+                    <input type="date" class="form-control" [(ngModel)]="concours.dateOrale">
+                  </div>
+                  <div class="col-md-6 form-group"><label>Date écrit</label>
+                    <input type="date" class="form-control" [(ngModel)]="concours.dateEcrit">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6 form-group"><label>Nombre admis oral</label>
+                    <input type="number" class="form-control" [(ngModel)]="concours.nbreEtudiantAdmisOrale">
+                  </div>
+                  <div class="col-md-6 form-group"><label>Nombre admis écrit</label>
+                    <input type="number" class="form-control" [(ngModel)]="concours.nbreEtudiantAdmisEcrit">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6 form-group"><label>Nombre admis</label>
+                    <input type="number" class="form-control" [(ngModel)]="concours.nbreEtudiantAdmis">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12 form-group"><label>Description</label>
+                    <textarea type="text" class="form-control" [(ngModel)]="concours.description"></textarea>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <br>
+
+            <!--Ajout des configConcours-->
+            <div class="card">
+              <div class="card-header"> Ajouter une configuration</div>
+              <div class="card-body">
+                <div class="form-group">
+                  <div class="row">
+                    <div class="col-md-12"><label> Diplôme </label>
+                      <select  class="form-control" [(ngModel)]="configConcours.typeDiplome">
+                        <option> Choisir un diplôme</option>
+                        <option *ngFor="let t of typeDiplomes" [ngValue]="t">{{t.libelle}}</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="row">
+                    <div class="col-md-6 form-group"><label> Note min </label>
+                      <input type="number" class="form-control" [(ngModel)]="configConcours.noteMin"></div>
+                    <div class="col-md-6 form-group"><label> Nbr Max des Admis </label>
+                      <input type="number" class="form-control" [(ngModel)]="configConcours.nbreMaxAdmis"></div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6 form-group"><label> Nbr Max Ecrit </label>
+                      <input type="number" class="form-control" [(ngModel)]="configConcours.nbreMaxEcritAdmis"></div>
+                    <div class="col-md-6 form-group"><label> Nbr Max Oral </label>
+                      <input type="number" class="form-control" [(ngModel)]="configConcours.nbreMaxOraleAdmis"></div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6 form-group"><label> AnnéeBacMax </label>
+                      <input type="number" class="form-control" [(ngModel)]="configConcours.anneeBacMax"></div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <button class="btn btn-outline-danger btn-block" (click)="showModalAddConfigConcoursConfirmation=true"> Ajouter </button>
+                </div>
+              </div>
+            </div>
+            <br>
+
+            <!--Liste des configConcours-->
+            <div class="card">
+              <div class="card-header"> Liste des configurations</div>
+              <div class="card-body">
+                <table class="table table-hover table-striped">
+                  <thead>
+                  <th>Diplôme</th>
+                  <th>Seuil</th>
+                  <th>NbrAdmisOral</th>
+                  <th>NbrMaxEcrit</th>
+                  <th>AnnéeBac</th>
+                  </thead>
+                  <tbody>
+                  <tr *ngFor="let c of concours.configConcourss">
+                    <td>{{c.typeDiplome.libelle}}</td>
+                    <td>{{c.noteMin}}</td>
+                    <td>{{c.nbreMaxOraleAdmis}}</td>
+                    <td>{{c.nbreMaxEcritAdmis}}</td>
+                    <td>{{c.anneeBacMax}}</td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="showModalAddConcours=false">Annuler</button>
+        <button class="btn btn-outline-info" (click)="showModalSaveConcoursConfirmation=true" [disabled]="!validateSave()">Sauvegarder</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Modal addConfig confirmation-->
+<div  [ngClass]="{'show': showModalAddConfigConcoursConfirmation}" class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"><strong> CONFIRMATION  </strong> </h5>
+      </div>
+      <div class="modal-body">
+        <div style="text-align: center">
+          <p>Êtes-vous sûr de vouloir ajouter la configuration ?</p>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="showModalAddConfigConcoursConfirmation=false">Non</button>
+          &nbsp; &nbsp;
+          <button type="button" class="btn btn-outline-danger" (click)="addConfigConcours(); showModalAddConfigConcoursConfirmation=false">Oui</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Modal saveConcours confirmation-->
+<div  [ngClass]="{'show': showModalSaveConcoursConfirmation}" class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"><strong> CONFIRMATION  </strong> </h5>
+      </div>
+      <div class="modal-body">
+        <div style="text-align: center">
+          <p>Êtes-vous sûr de vouloir sauvegarder le concours ?</p>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="showModalSaveConcoursConfirmation=false">Non</button>
+          &nbsp; &nbsp;
+          <button type="button" class="btn btn-outline-info" (click)="save(); showModalSaveConcoursConfirmation=false">Oui</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

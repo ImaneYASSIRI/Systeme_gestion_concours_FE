@@ -1,0 +1,98 @@
+.modal.show {
+  display: block;
+}
+.row-border{
+  border-collapse:collapse;
+  margin:25px 0;
+  font-size: 0.9em;
+  min-width:400px;
+  border-radius: 5px 5px 0 0;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0,0,0,0.15);
+}
+
+.row-border thead tr{
+  background-color: rgba(102, 71, 145, 0.65);
+  color:#fff;
+  text-align:left;
+  font-weight: bold;
+}
+
+.row-border th,
+.row-bordertd{
+  padding: 12px 15px;
+}
+
+.row-border tbody tr{
+  border-bottom: 1px solid #dddddd;
+
+}
+.row-border tbody tr:nth-of-type(even){
+  background-color: #f3f3f3;
+}
+
+.row-border tbody tr:last-of-type{
+  border-bottom:2px solid rgba(102, 71, 145, 0.65) ;
+}
+
+.row-border tbody tr.active-row{
+  font-weight: bold;
+  color:rgba(102, 71, 145, 0.65);
+}
+
+.card-header {
+  background-color: rgba(102, 71, 145, 0.65);
+  color:#fff;
+  text-align:left;
+  font-weight: bold;
+}
+
+/* Styling modal */
+.modal .modal-content {
+  -webkit-animation-name: modal-animation;
+  -webkit-animation-duration: 0.5s;
+  animation-name: modal-animation;
+  animation-duration: 0.5s;
+}
+
+@-webkit-keyframes modal-animation {
+  from {
+    top: -100px;
+    opacity: 0;
+  }
+  to {
+    top: 0px;
+    opacity: 1;
+  }
+}
+
+@keyframes modal-animation {
+  from {
+    top: -100px;
+    opacity: 0;
+  }
+  to {
+    top: 0px;
+    opacity: 1;
+  }
+}
+table {
+  text-align: center;
+}
+
+.padding {
+  padding-bottom: 2rem;
+}
+
+.welcome {
+  width: 75%;
+  margin: 0 auto;
+  padding-top: 2rem;
+}
+
+.welcome hr {
+  border-top: 2px solid #b4b4b4;
+  width: 95%;
+  margin-top: .3rem;
+  margin-bottom: 1rem;
+}
