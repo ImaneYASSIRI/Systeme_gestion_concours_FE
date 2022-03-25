@@ -1,3 +1,22 @@
+# Description du projet
+L’objet de ce projet est de savoir et de trouver comment obtenir une gestion simplifiée et automatisée des préinscriptions, comment faire pour que ces préinscriptions aux concours soient accessibles et faciles pour les étudiants, mais aussi et surtout comment ramener la gestion des concours à l’ère moderne en proposant une gestion totalement informatisée, avec une constitution de dossier qui se gère sur l’application et qui évite aux étudiants de se déplacer. 
+Cette application web permettra : 
+- aux étudiants d’avoir une visibilité et une lisibilité fluide et concrète de l’ensemble des concours afin de se préinscrire en toute simplicité.
+- à la commission d’avoir une liste des comptes des étudiants ainsi que des préinscriptions pour chaque filière de concours. De même, la commision aura la main sur les configurations des concours, des départements avec leurs filières, et sur celle des diplômes.
+
+# Frameworks
+<p align="center">
+	<a>
+	      <img src="https://img.shields.io/badge/Spring-6DB33F?style=for-the-badge&logo=spring&logoColor=white"/>
+	</a>
+	<a>
+	      <img src="https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white"/>
+	</a>
+</p>
+
+Vous pouvez trouver la partie Backend du projet ici : [FRONTEND](https://github.com/ImaneYASSIRI/Systeme_gestion_concours_BE)
+
+
 # PfeConcoursV3
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.5.
