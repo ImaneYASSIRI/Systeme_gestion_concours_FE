@@ -8,9 +8,10 @@
 	</a>
 </p>
 
-Backend: [BACKEND](https://github.com/ImaneYASSIRI/Systeme_gestion_concours_BE)
 
-
+<p align="center">
+	Backend: [BACKEND](https://github.com/ImaneYASSIRI/Systeme_gestion_concours_BE)
+</p>
 
 
 
